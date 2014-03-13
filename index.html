@@ -7,7 +7,6 @@
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
-
 	<style type="text/css">
 
 		#banner{
@@ -125,9 +124,34 @@
 			height:50px;
 		}
 
+		.pgp-link {
+			cursor:pointer;
+		}
+		.pgp-box{
+			width:100%;
+			height:200px;
+			overflow:scroll;
+		}
+
+		.pgp-text {
+			display: block;
+			font-family: monospace;
+			font-size:10px;
+			white-space: pre;
+			margin: 1em 0px;
+		}
+
+
 	</style>
 
 	<script type="text/javascript">
+		jQuery(document).ready(function(){
+		
+	    	$('#pgp').on('click', function() {
+	   			$('.pgp-link').children('.pgp-box').toggle();
+	    	});
+
+		})
 
 	</script>
 
@@ -239,7 +263,7 @@
 
 				<p>
 				<a href="http://richmondconfidential.org/2013/03/20/green-electricity-program-coming-to-richmond/" target="blank">
-					Green' electricity program coming to Richmond | Richmond Confidential
+					'Green' electricity program coming to Richmond | Richmond Confidential
 				</a>
 				</p>
 
@@ -268,6 +292,7 @@
 			<div id="contact-info"class="col-sm-8 col-sm-offset-2">
 
 				<p>seangreene89@gmail.com</p>
+				
 
 				<div id="social_icons">
 					<a href="http://twitter.com/seangreene89" target="blank">
