@@ -3,94 +3,264 @@
 <head>
     <meta charset="utf-8">
     <title>Sean Greene</title>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    
+    <link href="css/shuffle.style.css" rel="stylesheet">
+    <link href="css/shuffle.css" rel="stylesheet">
+
+    <script src="js/shuffle.js"></script>
+
+    <script>
+
+		$(document).ready(function($){
+			$('.slide').css({'height': $(window).height()});
+
+			//bug in ios, cant use fixed backgrounds, or parallax
+			if(navigator.userAgent.match(/(iPhone|iPod|iPad)/i)){
+
+				/**** ONLY FOR iOS ****/
+				$('.slide').css({
+					'background-attachment':'scroll',
+					'height' : 'auto',
+					'min-height' : $(window).height()
+				});
+				$('.container').css({
+					'top': '0',
+					'-webkit-transform': 'none'
+				});
+				$(window).on('orientationchange', function(){
+					$('.slide').css('min-height' , $(window).height());
+				});
+
+
+			} else {
+
+		// 		/**** DESKTOP ****/
+
+		// 		//$('.firstslide').parallax("50%", 0.1);
+		// 		//$('.secondslide').parallax("50%", 0.1);
+		// 		//$('.textsecond').parallax("1%", 0.8);
+		// 		//$('.thirdslide').parallax("50%", 0.1);
+		// 		//$('.fourthslide').parallax("50%", 0.1);
+		// 		// $('.fifthslide').parallax("50%", 0.1);
+		// 		// $('.sixthslide').parallax("50%", 0.1);
+		// 		// $('.seventhslide').parallax("50%", 0.1);
+		// 		// $('.eighthslide').parallax("50%", 0.1);
+
+
+				//This makes each slide the height of the browser viewport
+				$(window).on('resize', resize);
+				function resize(){
+					$('.slide').css({'height': $(window).height()});
+				}
+
+			}
+
+		}); 
+
+		/**** SHUFFLE.JS *****/
+
+		$(document).ready(function() {
+
+			var $grid = $('#grid'),
+		    	$sizer = $grid.find('.shuffle__sizer');
+
+			$grid.shuffle({
+		    	itemSelector: '.picture-item',
+		    	sizer: $sizer
+			});
+
+			$('.btn').click(function (e) {
+				      var $this = $(this),
+        	isActive = $this.hasClass( 'active' ),
+        	group = isActive ? 'all' : $this.data('group');
+
+			// Hide current label, show current label in title
+		    if ( !isActive ) {
+		    	$('.filter-options .active').removeClass('active');
+		   	}
+
+			$this.toggleClass('active');
+
+		    // Filter elements
+		    	$grid.shuffle( 'shuffle', group );
+			});
+		  		  
+			$('.sort-options').on('change', function() {
+				var sort = this.value,
+			    	opts = {};
+
+				// We're given the element wrapped in jQuery
+				if ( sort === 'date-created' ) {
+			  	opts = {
+			    	reverse: true,
+			    	by: function($el) {
+			      	return $el.data('date-created');
+			    	}
+			  	};
+				} else if ( sort === 'title' ) {
+			  	opts = {
+			    	by: function($el) {
+			      	return $el.data('title').toLowerCase();
+			    	}
+			  	};
+				}
+		  	//filter elements
+		  	$grid.shuffle('sort', opts);
+
+		    });
+
+
+		});
+
+
+	
+	</script>
 
 	<style type="text/css">
 
-		#banner{
+		/* http://meyerweb.com/eric/tools/css/reset/ 
+	   v2.0 | 20110126
+	   License: none (public domain)
+		*/
 
-			height:500px;	
-			position:relative;
-			background: url('images/wildwood.jpg') no-repeat center center fixed; 
+		html, body, div, span, applet, object, iframe,
+		h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+		a, abbr, acronym, address, big, cite, code,
+		del, dfn, em, img, ins, kbd, q, s, samp,
+		small, strike, strong, sub, sup, tt, var,
+		b, u, i, center,
+		dl, dt, dd, ol, ul, li,
+		fieldset, form, label, legend,
+		table, caption, tbody, tfoot, thead, tr, th, td,
+		article, aside, canvas, details, embed, 
+		figure, figcaption, footer, header, hgroup, 
+		menu, nav, output, ruby, section, summary,
+		time, mark, audio, video {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			font-size: 100%;
+			font: inherit;
+			vertical-align: baseline;
+		}
+		/* HTML5 display-role reset for older browsers */
+		article, aside, details, figcaption, figure, 
+		footer, header, hgroup, menu, nav, section {
+			display: block;
+		}
+		body {
+			line-height: 1;
+		}
+		ol, ul {
+			list-style: none;
+		}
+		blockquote, q {
+			quotes: none;
+		}
+		blockquote:before, blockquote:after,
+		q:before, q:after {
+			content: '';
+			content: none;
+		}
+		table {
+			border-collapse: collapse;
+			border-spacing: 0;
+		}
+
+
+		/*
+		my css
+		*/
+
+		.firstslide{
+			background: url('images/wildwood.jpg') no-repeat 50% 0 fixed; 
   				-webkit-background-size: cover;
   					-moz-background-size: cover;
   						-o-background-size: cover;
   			background-size: cover;
+  			z-index:0;
 		}
 
-		#masthead {
-			position:relative;
-			margin-top:220px;
-			text-align: center;
-			z-index:0;
+		#name {
+			position:fixed;
+			top:45%;
 		}
 
-		#about {
+		#name-hiding {
+			text-indent: -9999px;
+		}
+
+		#sean {
+			max-height: 300px;
 			position:relative;
+			top:20px;
+		}
+
+		.secondslide {
+			position:relative;
+			background-color:white;
 			z-index:200;
-			margin-top:50px;
-			margin-bottom:50px;
+			padding-top: 10%;
+			padding-bottom: 10%;
 		}
 
-		#molate{
-			background-image:url('images/molate.jpg');
-			background-attachment: fixed;
-			background-repeat: no-repeat;
-			background-size: auto 100%;
-			background-position:center top;
-			height:500px;	
-			position:relative;
-			z-index: 200;
-		}
-
-		#work {
-			margin-top:50px;
-			margin-bottom:50px;
-			z-index: 250;
-		}
-
-		#forest{
-			background-image:url('images/forest.jpg');
-			background-attachment: fixed;
-			background-repeat: no-repeat;
+		#pano {
+			background: url('images/forest.jpg') no-repeat 50% 0 fixed;
+  				-webkit-background-size: cover;
+  					-moz-background-size: cover;
+  						-o-background-size: cover;
 			background-size: cover;
-			background-position: center 40%;
-			height:500px;	
 			position:relative;
+			height: 350px;
+			z-index: 200;
+			/*background-color: #34495e;*/
+			background-color: white;
+		}
+
+		.thirdslide {
+			position:relative;
+			padding-top: 5%;
+			padding-bottom: 50px;
+			background-color: white;
 			z-index:300;
-		}
-
-		#contact {
-			margin-top:50px;
-			margin-bottom:50px;
-		}
-
-		#contact-info {
-			text-align: center;
+			min-height:1000px;
 		}
 
 		h1 {
-			font-family: Garamond;
+			font-family: Georgia;
 			font-size:5vw;
 			color: white;
 			text-align: center;
-			text-transform: uppercase;
 			text-shadow: 1px 1px 1px #C2C2C2;
 
+		}
+
+		#name h2:before {
+			display: block;
+			width: 30%;
+			content: "";
+			height: 2px;
+			margin: 0 auto;
+			background: #FFF;
+			position: relative;
+			left: 2px;
+			bottom: 15px;
 		}
 
 		h2 {
-			font-family: Garamond;
-			font-size:2vw;
+			font-family: Georgia;
+			font-size:2em;
 			color:white;
 			text-align: center;
-			text-shadow: 1px 1px 1px #C2C2C2;
-
 		}
 
 		h3 {
+			font-size: 24px;
 			font-family: Helvetica Neue, Helvetica, sans serif;
 			margin-bottom: 10px;
 		}
@@ -99,24 +269,37 @@
 			margin: 10px 0 10px 0;
 		}
 
+		.filter__label, .btn {
+			font-family: Helvetica Neue, Helvetica, sans serif;
+			font-size: 16px;
+		}
+
 		p {
 			font-size: 18px;
 			line-height:24px;
-			font-family: Helvetica Neue, Helvetica, sans serif;
+			font-family: Georgia;
 		}
 
-		.dropcap {
+		figcaption a {
 			font-family: Helvetica Neue, Helvetica, sans serif;
-			float: left;
-			font-size:75px;
-			line-height:60px;
-			padding-top: 4px;
-			padding-right:8px;
-			padding-left:3px;
+			font-size: 18px;
 		}
 
-		.code-icon {
-			background: url('images/code-icon.png')
+		.picture-item__description {
+			font-size: 18px;
+			font-family:Georgia;
+		}
+
+		.picture-item__tags {
+			font-size: 14px;
+			position:absolute;
+			z-index:10;
+			top:3px;
+			right:5px;
+		}
+
+		.glyphicon {
+			color:#34495e;
 		}
 
 		#social_icons {
@@ -124,215 +307,322 @@
 			height:50px;
 		}
 
-		.pgp-link {
-			cursor:pointer;
-		}
-		.pgp-box{
-			width:100%;
-			height:200px;
-			overflow:scroll;
-		}
-
-		.pgp-text {
-			display: block;
-			font-family: monospace;
-			font-size:10px;
-			white-space: pre;
-			margin: 1em 0px;
-		}
-
-
 	</style>
-
-	<script type="text/javascript">
-		jQuery(document).ready(function(){
-		
-	    	$('#pgp').on('click', function() {
-	   			$('.pgp-link').children('.pgp-box').toggle();
-	    	});
-
-		})
-
-	</script>
 
 </head>
 
 <body>
 
-	<div class="row" id="banner">
+<!--
+***********************************************************************************
+COVER
+***********************************************************************************
+-->
 
-		<div id="masthead" class="col-sm-6 col-sm-offset-3">
+	<div class="row firstslide slide" id="front">
 
-			<h1>Sean Greene</h1>
-			<h2>Digital Journalist</h2>
+		<div id="name" class="col-sm-6 col-sm-offset-3">
 
+			<h1 id="name-hiding">Sean Greene</h1>
+			<img src="images/name.png" id="sean" class="img-responsive">
+			<div class="col-sm-6 col-sm-offset-3">
+
+				<h2>journalist</h2>
+			</div>
 		</div>
 
 	</div>
 
-	<div id="about" class="row">
+<!--
+***********************************************************************************
+ABOUT SECTION
+***********************************************************************************
+-->
+	<div id="about" class="row secondslide slide">
 
-		<div class="col-sm-6 col-sm-offset-3">
+		<div class="col-sm-10 col-sm-offset-1">
 
-			<h3>
-				About Me
-			</h3>
+			<div class="col-sm-6">
 
-			<hr></hr>
+				<h3>
+					About Me
+				</h3>
 
-			<p>My name is Sean. I cover science and the environment using words, photos, data and code. I'm  a recent graduate of the UC Berkeley Graduate School of Journalism (<a href="http://journalism.berkeley.edu/profiles/sean_greene/" target=blank>here's my profile</a>). My work has appeared in The Orange County Register, Ventura County Star, KQED Public Radio and Bay Nature Magazine. Los Angeles-born, Ventura County-raised.</p>
-		</div>
+				<hr></hr>
 
-	</div>
+				<p>I cover stories about the environment using words, photos, data and code. I'm  a recent graduate of the UC Berkeley Graduate School of Journalism (<a href="http://journalism.berkeley.edu/alumni/sean_greene/" target=blank>here's my profile</a>).</p>
+				<br />
+				<p>My work has appeared in Bay Nature Magazine, KQED, the Ventura County Star and the Orange County Register and East Bay Express. Los Angeles-born, Ventura County-raised.</p>
 
-	<div class="row" id="molate"></div>
+				<br /><br /><br />
 
-	<div id="work" class="row">
+				<h3>
+					Contact
+				</h3>
 
-		<div class="col-sm-6 col-sm-offset-3">
+				<hr></hr>
 
-			<h3>
-				Work
-			</h3>
+					<p>seangreene89@gmail.com</p>
+					
 
-			<hr></hr>
+					<div id="social_icons">
+						<a href="http://twitter.com/seangreene89" target="blank">
+							<img src="social/iso-color/twitter-iso-color.png" />
+						</a>
+						<a href="http://instagram.com/seangreene89" target="blank">
+							<img src="social/iso-color/instagram-iso-color.png"/>
+						</a>
+						<a href="http://linkedin.com/pub/sean-greene/24/787/b40" target="blank">
+							<img src="social/iso-color/linkedin-iso-color.png"/>
+						</a>
+						<a href="http://sean-greene.tumblr.com" target="blank">
+							<img src="social/iso-color/tumblr-iso-color.png" />
+						</a>				
+					</div>
+			</div>
 
-			<h4>
-				Master's Project
-			</h4>
-			<p>
-				<a href="http://climatecalifornia.com" target="blank">
-					Climate California
-				</a>
-			</p>
-
-			<h4>
-				<span class="glyphicon glyphicon-pencil"></span> Stories
-			</h4>
-
-				<p>
-				<a href="https://medium.com/@BayNature/the-jumbo-squid-have-left-california-or-have-they-915edd5f083f" target="blank">
-					The Jumbo Squid Have Left California. Or Have They?
-				</a>
-				</p>
-				
-				<p>
-				<a href="http://baynature.org/articles/living-shorelines/" target="blank">
-					Recruiting Oysters for Habitat Restoration and Climate Adaptation | Bay Nature
-				</a>
-				</p>
-
-
-				<p>
-				<a href="http://baynature.org/articles/earthquake-weather/" target="blank">
-					Is there earthquake weather? And was that it? | Bay Nature
-				</a>
-				</p>
-
-				<p>
-				<a href="http://science.kqed.org/quest/2013/03/26/uc-berkeley-students-build-3d-printing-vending-machine/" target="blank">
-					UC Berkeley students build 3D-printing vending machine | KQED Public Radio
-				</a>
-				</p>
-
-				<p>
-				<a href="http://richmondconfidential.org/2013/04/22/feds-approve-results-of-chevron-fire-investigation/" target="blank">
-					Feds approve results of Chevron fire investigation | Richmond Confidential
-				</a>
-				</p>
-
-				<p>
-				<a href="http://richmondconfidential.org/2012/10/15/city-council-election-2012-mike-raccoon-eyes-kinney/" target="blank">
-					Mike Raccoon Eyes Kinney | Richmond Confidential
-				</a>
-				</p>
-
-			<h4>
-				<span class="glyphicon glyphicon-camera"></span> Multimedia
-			</h4>
-				<p>
-				<a href="http://richmondconfidential.org/2013/05/15/inside-the-point-molate-naval-fuel-depot/" target="blank">
-					Inside the Point Molate Naval Fuel Depot | Richmond Confidential
-				</a>
-				</p>
-
-				<p>
-				<a href="http://richmondconfidential.org/2013/04/24/on-top-of-the-world/" target="blank">
-					On top of the world | Richmond Confidential
-				</a>
-				</p>
-
-				<p>
-				<a href="http://richmondconfidential.org/2012/11/26/wading-with-the-oyster-catchers/" target="blank">
-					Wading with the oyster catchers | Richmond Confidential
-				</a>
-				</p>
-
-				<p>
-				<a href="http://oaklandnorth.net/2013/04/16/a-look-at-oaklands-chinatown-in-photos/" target="blank">
-					A look at Oakland's Chinatown in photos | Oakland North
-				</a>
-				</p>
-
-			<h4>
-				<span class="glyphicon glyphicon-chevron-left"></span><span class="glyphicon glyphicon-chevron-right"></span> Code
-			</h4>
-				<p>
-				<a href="http://seangreene.github.io/EPL-Project/" target="blank">
-					Buying a spot in soccer's top flight
-				</a>
-				</p>
-
-				<p>
-				<a href="http://richmondconfidential.org/2013/03/20/green-electricity-program-coming-to-richmond/" target="blank">
-					'Green' electricity program coming to Richmond | Richmond Confidential
-				</a>
-				</p>
-
-				<p>
-				<a href="http://richmondconfidential.org/2013/02/06/young-poets-to-stage-richmond-set-romeo-and-juliet/" target="blank">
-					Young poets to stage Richmond-set 'Romeo and Juliet' | Richmond Confidential
-				</a>
-				</p>
-
+			<div class="col-sm-6">
+				<img src="images/mugu.jpg" class="photo img-responsive">
+			</div>
 
 		</div>
-
 	</div>
 
-	<div class="row" id="forest"></div>
 
-	<div id="contact" class="row">
+<div class="row" id="pano">
 
-		<div class="col-sm-6 col-sm-offset-3">
-			<h3>
-				Contact
-			</h3>
+</div>
 
-			<hr></hr>
+<!--
+***********************************************************************************
+WORK SECTION
+***********************************************************************************
+-->
 
-			<div id="contact-info"class="col-sm-8 col-sm-offset-2">
+<div id="work" class="thirdslide row">
+	
+	<div class="col-sm-10 col-sm-offset-1">
+	<div class="container-fluid filter">
 
-				<p>seangreene89@gmail.com</p>
-				
+		<h3>Work</h3>
+		
+		<hr></hr>
+	    <!--Filter/Sort controls -->
 
-				<div id="social_icons">
-					<a href="http://twitter.com/seangreene89" target="blank">
-						<img src="Social_Icons/twitter.png" class="img_responsive" />
-					</a>
-					<a href="http://instagram.com/seangreene89" target="blank">
-						<img src="Social_Icons/Instagram.png" class="img_responsive" />
-					</a>
-					<a href="http://linkedin.com/pub/sean-greene/24/787/b40" target="blank">
-						<img src="Social_Icons/linkedin.png" class="img_responsive" />
-					</a>
-					<a href="http://sean-greene.tumblr.com" target="blank">
-						<img src="Social_Icons/tumblr.png" class="img_responsive" />
-					</a>
-				</div>
+
+	    <div class="row-fluid">
+	      <div class="span9">
+	        <p class="filter__label">Filter:</p>
+	        <div class="filter-options btn-group">
+	          <button class="btn btn--warning" data-group="stories">Stories</button>
+	          <button class="btn btn--warning" data-group="code">Code &amp; Design</button>
+	          <button class="btn btn--warning" data-group="multimedia">Multimedia</button>
+	          <button class="btn btn--warning" data-group="masters">Master's Project</button>
+	        </div>
+	      </div>
+<!-- 	      <div class="span3">
+	        <div class="m-nofloat pull-right">
+	          <p class="filter__label">Sort:</p>
+	          <select class="sort-options">
+	            <option value>Default</option>
+	            <option value="title">Title</option>
+	            <option value="date-created">Date published</option>
+	          </select>
+	        </div>
+	      </div> -->
+	    </div><!-- filter/sort controls-->
+		
+		<!--
+		TILES
+		-->
+		
+		<div class="container-fluid">
+		  <div id="grid" class="row-fluid m-row shuffle--container shuffle--fluid">	    			
+		    
+
+		<figure class="span3 m-span3 picture-item picture-item--h2" data-groups='["stories"]' data-date-created="2014-05-22" data-title="The Jumbo Squid">
+			  <div class="picture-item__inner">
+			    <img src="thumbs/squid.jpg" alt="" height="145" width="230" />
+			    <p class="picture-item__tags pull-right">
+			    	<span class="glyphicon glyphicon-pencil"></span>
+			    </p>
+			    <div class="picture-item__details clearfix">
+			      <figcaption class="picture-item__title pull-left"><a href="https://medium.com/@BayNature/the-jumbo-squid-have-left-california-or-have-they-915edd5f083f" target="_blank">The Jumbo Squid Have Left California. Or Have They? - Bay Nature</a></figcaption>
+			    </div>
+			    <p class="picture-item__description">“All of a sudden the cooler was full of red blood. Squid blood isn’t red, so I knew it was me.”</p>
+			  </div>
+			</figure>
+
+
+			<figure class="span6 m-span3 picture-item picture-item--h2" data-groups='["masters","code","stories","multimedia"]' data-date-created="2014-05-12" data-title="Climate California">
+			  <div class="picture-item__inner">
+			    <img src="thumbs/climatecalifornia.png" alt="" height="145" width="230" />
+			    <p class="picture-item__tags pull-right">
+			    	<span class="glyphicon glyphicon-pencil"></span> 
+			    	<span class="glyphicon glyphicon-chevron-left"></span><span class="glyphicon glyphicon-chevron-right"></span> 
+			    	<span class="glyphicon glyphicon-camera"></span> 
+			    	<span class="glyphicon glyphicon-star"></span>
+			    </p>
+			    <div class="picture-item__details clearfix">
+			      <figcaption class="picture-item__title pull-left"><a href="http://climatecalifornia.com" target="_blank">Climate California</a></figcaption>			      
+			    </div>
+			    <p class="picture-item__description">Stories from the front lines in the battle against climate change. My graduate school master's project, a four-part multimedia narrative.</p>
+			  </div>
+			</figure>
+
+
+			<figure class="span3 m-span3 picture-item picture-item--h2" data-groups='["stories"]' data-date-created="2014-04-07" data-title="Living Shorelines">
+			  <div class="picture-item__inner">
+			    <img src="thumbs/shoreline2.jpg" alt="" height="145" width="230" />
+			    <p class="picture-item__tags pull-right">
+			    	<span class="glyphicon glyphicon-pencil"></span>
+			    </p>
+			    <div class="picture-item__details clearfix">
+			      <figcaption class="picture-item__title pull-left"><a href="http://baynature.org/articles/living-shorelines/" target="_blank">Living Shorelines - Bay Nature</a></figcaption>
+			    </div>
+			    <p class="picture-item__description">Recruiting oysters for habitat restoration and climate adaptation.</p>
+			  </div>
+			</figure>
+
+
+			<figure class="span3 m-span3 picture-item" data-groups='["code"]' data-date-created="2013-12-12" data-title="Buying a Spot in English Soccer's Top Flight">
+			  <div class="picture-item__inner">
+			    <img src="thumbs/soccerviz.jpg" alt="" height="145" width="230" />
+			    <p class="picture-item__tags pull-right">
+			      	<span class="glyphicon glyphicon-chevron-left"></span><span class="glyphicon glyphicon-chevron-right"></span>
+			    </p>
+			    <div class="picture-item__details clearfix">
+			      <figcaption class="picture-item__title pull-left"><a href="http://seangreene.github.com/EPL-Project/" target="_blank">Buying a Spot in English Soccer's Top Flight</a></figcaption>
+			    </div>
+			  </div>
+			</figure>
+
+			        
+			<figure class="span3 m-span3 picture-item" data-groups='["stories"]' data-date-created="2013-10-16" data-title="Earthquake Weather">
+			  <div class="picture-item__inner">
+			    <img src="thumbs/earthquakeweather.jpg" alt="" height="145" width="230" />
+			    <p class="picture-item__tags pull-right">
+			      	<span class="glyphicon glyphicon-pencil"></span>
+			    </p>
+			    <div class="picture-item__details clearfix">
+			      <figcaption class="picture-item__title pull-left"><a href="http://baynature.org/articles/earthquake-weather/" target="_blank">Is There Earthquake Weather? - Bay Nature</a></figcaption>
+			    </div>
+			  </div>
+			</figure>
+
+
+			<figure class="span6 m-span3 picture-item" data-groups='["multimedia","code"]' data-date-created="2013-05-15" data-title="Point Molate">
+			  <div class="picture-item__inner">
+			    <img src="thumbs/molate.jpg" alt="" height="145" width="230" />
+			    <p class="picture-item__tags pull-right">
+			    	<span class="glyphicon glyphicon-chevron-left"></span><span class="glyphicon glyphicon-chevron-right"></span>
+			    	<span class="glyphicon glyphicon-camera"></span>
+			    </p>
+			    <div class="picture-item__details clearfix">
+			      <figcaption class="picture-item__title pull-left"><a href="http://richmondconfidential.org/2013/05/15/inside-the-point-molate-naval-fuel-depot/" target="_blank">Inside the Point Molate Naval Fuel Depot - Richmond Confidential</a></figcaption>
+			    </div>
+			  </div>
+			</figure>        
+
+
+			<figure class="span6 m-span3 picture-item" data-groups='["stories","multimedia"]' data-date-created="2013-04-24" data-title="On top of the world">
+			  <div class="picture-item__inner">
+			    <img src="thumbs/kami.jpg" alt="" height="145" width="230" />
+			    <p class="picture-item__tags pull-right">
+			    	<span class="glyphicon glyphicon-pencil"></span>
+					<span class="glyphicon glyphicon-camera"></span>
+			    </p>
+			    <div class="picture-item__details clearfix">
+			      <figcaption class="picture-item__title pull-left"><a href="http://richmondconfidential.org/2013/04/24/on-top-of-the-world/" target="_blank">On top of the world - Richmond Confidential</a></figcaption>
+			    </div>
+			  </div>
+			</figure>
+
+
+			<figure class="span3 m-span3 picture-item" data-groups='["stories"]' data-date-created="2013-04-22" data-title="Chevron fire investigation">
+			  <div class="picture-item__inner">
+			    <img src="thumbs/chevron.jpg" alt="" height="145" width="230" />
+			    <p class="picture-item__tags pull-right">
+			    	<span class="glyphicon glyphicon-pencil"></span>
+			    </p>
+			    <div class="picture-item__details clearfix">
+			      <figcaption class="picture-item__title pull-left"><a href="http://richmondconfidential.org/2013/04/22/feds-approve-results-of-chevron-fire-investigation" target="_blank">Feds approve results of Chevron fire investigation - Richmond Confidential</a></figcaption>
+			    </div>
+			  </div>
+			</figure>
+
+
+			<figure class="span3 m-span3 picture-item" data-groups='["stories"]' data-date-created="2013-03-26" data-title="3D Printing">
+			  <div class="picture-item__inner">
+			    <img src="thumbs/3dprinting.jpg" alt="" height="145" width="230" />
+			    <p class="picture-item__tags pull-right">
+			      	<span class="glyphicon glyphicon-pencil"></span>
+			    </p>
+			    <div class="picture-item__details clearfix">
+			      <figcaption class="picture-item__title pull-left"><a href="http://science.kqed.org/quest/2013/03/26/uc-berkeley-students-build-3d-printing-vending-machine/" target="_blank">UC Berkeley Students Build 3D Printing Vending Machine - KQED</a></figcaption>
+			    </div>
+			    
+			  </div>
+			</figure>
+
+			<figure class="span3 m-span3 picture-item" data-groups='["code"]' data-date-created="2013-03-20" data-title="Green energy">
+			  <div class="picture-item__inner">
+			    <img src="thumbs/greenenergy.png" alt="" height="145" width="230" />
+			    <p class="picture-item__tags pull-right">
+			      	<span class="glyphicon glyphicon-chevron-left"></span><span class="glyphicon glyphicon-chevron-right"></span>
+				</p>
+			    <div class="picture-item__details clearfix">
+			      <figcaption class="picture-item__title pull-left"><a href="/http://richmondconfidential.org/2013/03/20/green-electricity-program-coming-to-richmond/" target="_blank">'Green' electricity program coming to Richmond - Richmond Confidential</a></figcaption>
+			    </div>
+			  </div>
+			</figure>
+			
+			<figure class="span6 m-span3 picture-item" data-groups='["code"]' data-date-created="2013-02-06" data-title="Young poets to stage Richmond-set Romeo and Juliet">
+			  <div class="picture-item__inner">
+			    <img src="thumbs/rawtalent.jpg" alt="" height="145" width="230" />
+			     <p class="picture-item__tags pull-right">
+			      	<span class="glyphicon glyphicon-chevron-left"></span><span class="glyphicon glyphicon-chevron-right"></span>
+				</p>
+			    <div class="picture-item__details clearfix">
+			      <figcaption class="picture-item__title pull-left"><a href="http://richmondconfidential.org/2013/02/06/young-poets-to-stage-richmond-set-romeo-and-juliet/" target="_blank">Young poets to stage Richmond-set 'Romeo and Juliet' - Richmond Confidential</a></figcaption>
+			    </div>
+			  </div>
+			</figure>	
+
+			<figure class="span3 m-span3 picture-item" data-groups='["stories","code","multimedia"]' data-date-created="2012-11-26" data-title="Wading with the oyster catchers">
+			  <div class="picture-item__inner">
+			    <img src="thumbs/oysters.jpg" alt="" height="145" width="230" />
+			    <p class="picture-item__tags pull-right">
+			    	<span class="glyphicon glyphicon-pencil"></span>
+			      	<span class="glyphicon glyphicon-chevron-left"></span><span class="glyphicon glyphicon-chevron-right"></span>
+			      	<span class="glyphicon glyphicon-camera"></span>
+				</p>
+			    <div class="picture-item__details clearfix">
+			      <figcaption class="picture-item__title pull-left"><a href="http://richmondconfidential/2012/11/26/wading-with-the-oyster-catchers" target="_blank">Wading with the oyster catchers - Richmond Confidential</a></figcaption>
+			    </div> 
+			  </div>
+			</figure>
+
+			<figure class="span3 m-span3 picture-item" data-groups='["stories]' data-date-created="2012-10-15" data-title="Mike Raccoon Eyes Kinney">
+			  <div class="picture-item__inner">
+			    <img src="thumbs/raccooneyes.jpg" alt="" height="145" width="230" />
+			    <p class="picture-item__tags pull-right">
+			     	<span class="glyphicon glyphicon-pencil"></span>
+				</p>			    
+			    <div class="picture-item__details clearfix">
+			      <figcaption class="picture-item__title pull-left"><a href="http://richmondconfidential.org/2012/10/15/city-council-election-2012-mike-raccoon-eyes-kinney/" target="_blank">Mike Raccoon Eyes Kinney - Richmond Confidential</a></figcaption>
+			    </div>			    
+			  </div>
+			</figure>
+
+			    <div class="span3 m-span3 shuffle__sizer"></div>
+			  </div>
+			</div><!--container-->
+
+		</div><!-- tiles -->
 		</div>
 
-	</div>
+</div>
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
