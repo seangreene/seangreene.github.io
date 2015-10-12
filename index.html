@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1">
+
     <title>Sean Greene</title>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -141,7 +143,15 @@
 	</script>
 
 	<style type="text/css">
-
+		@viewport{
+		    zoom: 1.0;
+		    width: extend-to-zoom;
+		}
+		@-ms-viewport{
+		    width: extend-to-zoom;
+		    zoom: 1.0;
+		}
+		
 		/* http://meyerweb.com/eric/tools/css/reset/ 
 	   v2.0 | 20110126
 	   License: none (public domain)
@@ -274,17 +284,15 @@
 
 		}
 
-		#name h2:before {
+		#name hr {
 			display: block;
 			width: 30%;
-			content: "";
-			height: 2px;
-			margin: 0 auto;
+			margin: 10px auto;
 			background: #FFF;
 			position: relative;
-			left: 2px;
+/*			left: 2px;
 			bottom: 15px;
-		}
+*/		}
 
 		h2 {
 			font-family: Georgia;
@@ -367,11 +375,13 @@ COVER
 
 	<div class="row firstslide slide" id="front">
 
-		<div id="name" class="col-sm-6 col-sm-offset-3">
+		<div id="name" class="col-sm-6 col-sm-offset-3 col-xs-12">
 
 			<h1 id="name-hiding">Sean Greene</h1>
 			<img src="images/name.png" id="sean" class="img-responsive">
 			<div class="col-sm-6 col-sm-offset-3">
+
+				<hr></hr>
 
 				<h2>journalist</h2>
 			</div>
@@ -388,7 +398,7 @@ ABOUT SECTION
 
 		<div class="col-sm-10 col-sm-offset-1">
 
-			<div class="col-sm-6">
+			<div class="col-sm-6 col-xs-12">
 
 				<h3>
 					About Me
@@ -435,7 +445,7 @@ ABOUT SECTION
 					</div>
 			</div>
 
-			<div class="col-sm-6">
+			<div class="col-sm-6 col-xs-12">
 				<img src="images/mugu.jpg" class="photo img-responsive">
 			</div>
 
