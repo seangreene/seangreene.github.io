@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1">
 
     <title>Sean Greene</title>
 
@@ -142,6 +143,14 @@
 	</script>
 
 	<style type="text/css">
+		@viewport{
+		    zoom: 1.0;
+		    width: extend-to-zoom;
+		}
+		@-ms-viewport{
+		    width: extend-to-zoom;
+		    zoom: 1.0;
+		}
 
 		/* http://meyerweb.com/eric/tools/css/reset/ 
 	   v2.0 | 20110126
@@ -266,7 +275,7 @@
 
 		}
 
-		h1 {
+		#name h1 {
 			font-family: Georgia;
 			font-size:5vw;
 			color: white;
@@ -285,13 +294,34 @@
 			bottom: 15px;
 */		}
 
-		h2 {
+		#name h2 {
 			font-family: Georgia;
 			font-size:2em;
 			color:white;
 			text-align: center;
 		}
-
+		#name-mobile {
+			margin-top: 20px;
+		}
+		#name-mobile h1 {
+			font-family: Georgia;
+			font-size: 25px;
+			color: black;
+			text-align: center;
+		}
+		#name-mobile hr {
+			display: block;
+			width: 20%;
+			margin: 10px auto;
+			background: #FFF;
+			position: relative;
+		}
+		#name-mobile h2 {
+			font-family: Georgia;
+			font-size:18px;
+			color:black;
+			text-align: center;			
+		}
 		h3 {
 			font-size: 24px;
 			font-family: "Helvetica Neue", Helvetica, sans serif;
@@ -351,6 +381,11 @@
 			margin-top:15px;
 			height:50px;
 		}
+		@media (max-width: 400px){
+			.filter-options .btn {
+				font-size: 14px;
+			}
+		}
 
 	</style>
 
@@ -366,7 +401,7 @@ COVER
 
 	<div class="row firstslide slide" id="front">
 
-		<div id="name" class="col-sm-6 col-sm-offset-3 col-xs-12">
+		<div id="name" class="col-sm-6 col-sm-offset-3 col-xs-12 hidden-xs">
 
 			<h1 id="name-hiding">Sean Greene</h1>
 			<img src="images/name.png" id="sean" class="img-responsive">
@@ -378,6 +413,14 @@ COVER
 			</div>
 		</div>
 
+	</div>
+
+	<div id="name-mobile" class="row visible-xs">
+		<div class="col-xs-12">
+			<h1>Sean Greene</h1>
+			<hr></hr>
+			<h2>journalist</h2>
+		</div>
 	</div>
 
 <!--
@@ -444,7 +487,7 @@ ABOUT SECTION
 	</div>
 
 
-<div class="row" id="pano">
+<div class="row hidden-xs" id="pano">
 
 </div>
 
@@ -495,7 +538,7 @@ WORK SECTION
 		<div class="container-fluid"><!--tile container-->
 		  <div id="grid" class="row-fluid m-row shuffle--container shuffle--fluid shuffle">
 
-		<figure class="span3 m-span3 picture-item picture-item--h2" data-groups='["code"]' data-date-created="2015-07-01" data-title="Beer guide">
+		<figure class="span3 m-span6 picture-item picture-item--h2" data-groups='["code"]' data-date-created="2015-07-01" data-title="Beer guide">
 		  <div class="picture-item__inner">
 		    <img src="http://www.trbimg.com/img-55920134/turbine/la-fo-beerguide-studio-photos-20150611-012/800" alt="" height="145" width="230" />
 		    <p class="picture-item__tags pull-right">
@@ -508,7 +551,7 @@ WORK SECTION
 		  </div>
 		</figure>
 
-		<figure class="span6 m-span3 picture-item picture-item--h2" data-groups='["code"]' data-date-created="2015-05-09" data-title="Future of">
+		<figure class="span6 m-span6 picture-item picture-item--h2" data-groups='["code"]' data-date-created="2015-05-09" data-title="Future of">
 		  <div class="picture-item__inner">
 		    <img src="http://www.trbimg.com/img-554b9d25/turbine/la-tr-cuba-van-der-brug-20150505-002/800" alt="" height="145" width="230" />
 		    <p class="picture-item__tags pull-right">
@@ -521,7 +564,7 @@ WORK SECTION
 		  </div>
 		</figure>  
 
-		<figure class="span3 m-span3 picture-item picture-item--h2" data-groups='["code"]' data-date-created="2015-01-01" data-title="Socal Moments 2014">
+		<figure class="span3 m-span6 picture-item picture-item--h2" data-groups='["code"]' data-date-created="2015-01-01" data-title="Socal Moments 2014">
 		  <div class="picture-item__inner">
 		    <img src="http://www.trbimg.com/img-5498d5f7/turbine/la-scm-2014-main-image-20141222/800" alt="" height="145" width="230" />
 		    <p class="picture-item__tags pull-right">
@@ -536,7 +579,7 @@ WORK SECTION
 
 		<!-- LAT written clips -->
 
-		<figure class="span3 m-span3 picture-item" data-groups='["stories"]' data-date-created="2015-06-11" data-title="Serengeti photos">
+		<figure class="span3 m-span6 picture-item" data-groups='["stories"]' data-date-created="2015-06-11" data-title="Serengeti photos">
 			  <div class="picture-item__inner">
 			    <img src="http://www.trbimg.com/img-5578c784/turbine/la-sci-sn-serengeti-photos-20150608-021/600/16x9" alt="" height="145" width="230" />
 			    <p class="picture-item__tags pull-right">
@@ -549,7 +592,7 @@ WORK SECTION
 			</figure>
 
 
-			<figure class="span3 m-span3 picture-item" data-groups='["stories", "code"]' data-date-created="2015-04-17" data-title="California's national parks">
+			<figure class="span3 m-span6 picture-item" data-groups='["stories", "code"]' data-date-created="2015-04-17" data-title="California's national parks">
 			  <div class="picture-item__inner">
 			    <img src="http://www.trbimg.com/img-553149a5/turbine/la-tr-california-national-parks-20150417-001/600/16x9" alt="" height="145" width="230" />
 			    <p class="picture-item__tags pull-right">
@@ -562,7 +605,7 @@ WORK SECTION
 			</figure>
 
 
-			<figure class="span3 m-span3 picture-item" data-groups='["stories"]' data-date-created="2015-04-24" data-title="Hubble anniversary">
+			<figure class="span3 m-span6 picture-item" data-groups='["stories"]' data-date-created="2015-04-24" data-title="Hubble anniversary">
 			  <div class="picture-item__inner">
 			    <img src="http://www.trbimg.com/img-5539c471/turbine/la-na-sn-hubble-space-telescope-25th-anniversa-007/600/16x9" alt="" height="145" width="230" />
 			    <p class="picture-item__tags pull-right">
@@ -575,7 +618,7 @@ WORK SECTION
 			</figure>
 
 			        
-			<figure class="span3 m-span3 picture-item" data-groups='["stories"]' data-date-created="2013-10-16" data-title="USGS seafloor">
+			<figure class="span3 m-span6 picture-item" data-groups='["stories"]' data-date-created="2013-10-16" data-title="USGS seafloor">
 			  <div class="picture-item__inner">
 			    <img src="http://www.trbimg.com/img-550b5abf/turbine/la-usgs-seafloor-images-20150318-022/600/16x9" alt="" height="145" width="230" />
 			    <p class="picture-item__tags pull-right">
@@ -588,7 +631,7 @@ WORK SECTION
 			</figure>
 		<!-- /LAT written -->
 
-		<figure class="span3 m-span3 picture-item picture-item--h2" data-groups='["stories"]' data-date-created="2014-11-03" data-title="LFC history">
+		<figure class="span3 m-span6 picture-item picture-item--h2" data-groups='["stories"]' data-date-created="2014-11-03" data-title="LFC history">
 		  <div class="picture-item__inner">
 		    <img src="thumbs/lfcxtra.jpg" alt="" height="145" width="230" />
 		    <p class="picture-item__tags pull-right">
@@ -602,7 +645,7 @@ WORK SECTION
 		  </div>
 		</figure>
 
-		<figure class="span3 m-span3 picture-item picture-item--h2" data-groups='["stories"]' data-date-created="2014-05-22" data-title="The Jumbo Squid">
+		<figure class="span3 m-span6 picture-item picture-item--h2" data-groups='["stories"]' data-date-created="2014-05-22" data-title="The Jumbo Squid">
 			  <div class="picture-item__inner">
 			    <img src="thumbs/squid.jpg" alt="" height="145" width="230" />
 			    <p class="picture-item__tags pull-right">
@@ -616,7 +659,7 @@ WORK SECTION
 			</figure>
 
 
-			<figure class="span6 m-span3 picture-item picture-item--h2" data-groups='["masters","code","stories","multimedia"]' data-date-created="2014-05-12" data-title="Climate California">
+			<figure class="span6 m-span6 picture-item picture-item--h2" data-groups='["masters","code","stories","multimedia"]' data-date-created="2014-05-12" data-title="Climate California">
 			  <div class="picture-item__inner">
 			    <img src="thumbs/climatecalifornia.png" alt="" height="145" width="230" />
 			    <p class="picture-item__tags pull-right">
@@ -633,7 +676,7 @@ WORK SECTION
 			</figure>
 
 
-			<figure class="span3 m-span3 picture-item" data-groups='["stories"]' data-date-created="2014-04-07" data-title="Living Shorelines">
+			<figure class="span3 m-span6 picture-item" data-groups='["stories"]' data-date-created="2014-04-07" data-title="Living Shorelines">
 			  <div class="picture-item__inner">
 			    <img src="thumbs/shoreline2.jpg" alt="" height="145" width="230" />
 			    <p class="picture-item__tags pull-right">
@@ -646,7 +689,7 @@ WORK SECTION
 			</figure>
 
 
-			<figure class="span3 m-span3 picture-item" data-groups='["code"]' data-date-created="2014-05-12" data-title="Cyclic Drought">
+			<figure class="span3 m-span6 picture-item" data-groups='["code"]' data-date-created="2014-05-12" data-title="Cyclic Drought">
 			  <div class="picture-item__inner">
 			    <img src="thumbs/droughtchart.jpg" alt="" height="145" width="230" />
 			    <p class="picture-item__tags pull-right">
@@ -659,7 +702,7 @@ WORK SECTION
 			</figure>
 
 
-			<figure class="span3 m-span3 picture-item" data-groups='["code"]' data-date-created="2013-12-12" data-title="Buying a Spot in English Soccer's Top Flight">
+			<figure class="span3 m-span6 picture-item" data-groups='["code"]' data-date-created="2013-12-12" data-title="Buying a Spot in English Soccer's Top Flight">
 			  <div class="picture-item__inner">
 			    <img src="thumbs/soccerviz.jpg" alt="" height="145" width="230" />
 			    <p class="picture-item__tags pull-right">
@@ -672,7 +715,7 @@ WORK SECTION
 			</figure>
 
 			        
-			<figure class="span3 m-span3 picture-item" data-groups='["stories"]' data-date-created="2013-10-16" data-title="Earthquake Weather">
+			<figure class="span3 m-span6 picture-item" data-groups='["stories"]' data-date-created="2013-10-16" data-title="Earthquake Weather">
 			  <div class="picture-item__inner">
 			    <img src="thumbs/earthquakeweather.jpg" alt="" height="145" width="230" />
 			    <p class="picture-item__tags pull-right">
@@ -685,7 +728,7 @@ WORK SECTION
 			</figure>
 
 
-			<figure class="span6 m-span3 picture-item" data-groups='["multimedia","code"]' data-date-created="2013-05-15" data-title="Point Molate">
+			<figure class="span6 m-span6 picture-item" data-groups='["multimedia","code"]' data-date-created="2013-05-15" data-title="Point Molate">
 			  <div class="picture-item__inner">
 			    <img src="thumbs/molate.jpg" alt="" height="145" width="230" />
 			    <p class="picture-item__tags pull-right">
@@ -699,7 +742,7 @@ WORK SECTION
 			</figure>        
 
 
-			<figure class="span6 m-span3 picture-item" data-groups='["stories","multimedia"]' data-date-created="2013-04-24" data-title="On top of the world">
+			<figure class="span6 m-span6 picture-item" data-groups='["stories","multimedia"]' data-date-created="2013-04-24" data-title="On top of the world">
 			  <div class="picture-item__inner">
 			    <img src="thumbs/kami.jpg" alt="" height="145" width="230" />
 			    <p class="picture-item__tags pull-right">
@@ -713,7 +756,7 @@ WORK SECTION
 			</figure>
 
 
-			<figure class="span3 m-span3 picture-item" data-groups='["stories"]' data-date-created="2013-04-22" data-title="Chevron fire investigation">
+			<figure class="span3 m-span6 picture-item" data-groups='["stories"]' data-date-created="2013-04-22" data-title="Chevron fire investigation">
 			  <div class="picture-item__inner">
 			    <img src="thumbs/chevron.jpg" alt="" height="145" width="230" />
 			    <p class="picture-item__tags pull-right">
@@ -726,7 +769,7 @@ WORK SECTION
 			</figure>
 
 
-			<figure class="span3 m-span3 picture-item" data-groups='["stories"]' data-date-created="2013-03-26" data-title="3D Printing">
+			<figure class="span3 m-span6 picture-item" data-groups='["stories"]' data-date-created="2013-03-26" data-title="3D Printing">
 			  <div class="picture-item__inner">
 			    <img src="thumbs/3dprinting.jpg" alt="" height="145" width="230" />
 			    <p class="picture-item__tags pull-right">
@@ -739,7 +782,7 @@ WORK SECTION
 			  </div>
 			</figure>
 
-			<figure class="span3 m-span3 picture-item" data-groups='["code"]' data-date-created="2013-03-20" data-title="Green energy">
+			<figure class="span3 m-span6 picture-item" data-groups='["code"]' data-date-created="2013-03-20" data-title="Green energy">
 			  <div class="picture-item__inner">
 			    <img src="thumbs/greenenergy.png" alt="" height="145" width="230" />
 			    <p class="picture-item__tags pull-right">
@@ -751,7 +794,7 @@ WORK SECTION
 			  </div>
 			</figure>
 
-			<figure class="span3 m-span3 picture-item" data-groups='["code"]' data-date-created="2013-03-06" data-title="Richmond soda tax">
+			<figure class="span3 m-span6 picture-item" data-groups='["code"]' data-date-created="2013-03-06" data-title="Richmond soda tax">
 			  <div class="picture-item__inner">
 			    <img src="thumbs/sodatax.jpg" alt="" height="145" width="230" />
 			    <p class="picture-item__tags pull-right">
@@ -763,7 +806,7 @@ WORK SECTION
 			  </div>
 			</figure>
 
-			<figure class="span6 m-span3 picture-item" data-groups='["code"]' data-date-created="2013-02-06" data-title="Young poets to stage Richmond-set Romeo and Juliet">
+			<figure class="span6 m-span6 picture-item" data-groups='["code"]' data-date-created="2013-02-06" data-title="Young poets to stage Richmond-set Romeo and Juliet">
 			  <div class="picture-item__inner">
 			    <img src="thumbs/rawtalent.jpg" alt="" height="145" width="230" />
 			     <p class="picture-item__tags pull-right">
@@ -775,7 +818,7 @@ WORK SECTION
 			  </div>
 			</figure>	
 
-			<figure class="span3 m-span3 picture-item" data-groups='["stories","code","multimedia"]' data-date-created="2012-11-26" data-title="Wading with the oyster catchers">
+			<figure class="span3 m-span6 picture-item" data-groups='["stories","code","multimedia"]' data-date-created="2012-11-26" data-title="Wading with the oyster catchers">
 			  <div class="picture-item__inner">
 			    <img src="thumbs/oysters.jpg" alt="" height="145" width="230" />
 			    <p class="picture-item__tags pull-right">
@@ -789,7 +832,7 @@ WORK SECTION
 			  </div>
 			</figure>
 
-			<figure class="span3 m-span3 picture-item" data-groups='["stories]' data-date-created="2012-10-15" data-title="Mike Raccoon Eyes Kinney">
+			<figure class="span3 m-span6 picture-item" data-groups='["stories]' data-date-created="2012-10-15" data-title="Mike Raccoon Eyes Kinney">
 			  <div class="picture-item__inner">
 			    <img src="thumbs/raccooneyes.jpg" alt="" height="145" width="230" />
 			    <p class="picture-item__tags pull-right">
@@ -801,7 +844,7 @@ WORK SECTION
 			  </div>
 			</figure>
 
-			    <div class="span3 m-span3 shuffle__sizer"></div>
+			    <div class="span3 m-span6 shuffle__sizer"></div>
 			  </div><!--#grid -->
 		</div><!--tile container-->
 
