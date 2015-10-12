@@ -15,53 +15,53 @@
     <link href="css/shuffle.css" rel="stylesheet">
 
     <script>
-
 		$(document).ready(function($){
-			$('.slide').css({'height': $(window).height()});
+					$('.slide').css({'height': $(window).height()});
 
-			//bug in ios, cant use fixed backgrounds, or parallax
-			if(navigator.userAgent.match(/(iPhone|iPod|iPad)/i)){
+					//bug in ios, cant use fixed backgrounds, or parallax
+					if(navigator.userAgent.match(/(iPhone|iPod|iPad)/i)){
 
-				/**** ONLY FOR iOS ****/
-				$('.slide').css({
-					'background-attachment':'scroll',
-					'height' : 'auto',
-					'min-height' : $(window).height()
-				});
-				$('.container').css({
-					'top': '0',
-					'-webkit-transform': 'none'
-				});
-				$(window).on('orientationchange', function(){
-					$('.slide').css('min-height' , $(window).height());
-				});
-
-
-			} else {
-
-		// 		/**** DESKTOP ****/
-
-		// 		$('.firstslide').parallax("50%", 0.1);
-		// 		//$('.secondslide').parallax("50%", 0.1);
-		// 		//$('.textsecond').parallax("1%", 0.8);
-		// 		//$('.thirdslide').parallax("50%", 0.1);
-		// 		//$('.fourthslide').parallax("50%", 0.1);
-		// 		// $('.fifthslide').parallax("50%", 0.1);
-		// 		// $('.sixthslide').parallax("50%", 0.1);
-		// 		// $('.seventhslide').parallax("50%", 0.1);
-		// 		// $('.eighthslide').parallax("50%", 0.1);
+						/**** ONLY FOR iOS ****/
+						$('.slide').css({
+							'background-attachment':'scroll',
+							'height' : 'auto',
+							'min-height' : $(window).height()
+						});
+						$('.container').css({
+							'top': '0',
+							'-webkit-transform': 'none'
+						});
+						$(window).on('orientationchange', function(){
+							$('.slide').css('min-height' , $(window).height());
+						});
 
 
-				//This makes each slide the height of the browser viewport
-				// $(window).on('resize', resize);
-				// function resize(){
-				// 	$('.slide').css({'height': $(window).height()});
-				// }
+					} else {
 
-			}
+				// 		/**** DESKTOP ****/
 
-		}); 
+				// 		$('.firstslide').parallax("50%", 0.1);
+				// 		//$('.secondslide').parallax("50%", 0.1);
+				// 		//$('.textsecond').parallax("1%", 0.8);
+				// 		//$('.thirdslide').parallax("50%", 0.1);
+				// 		//$('.fourthslide').parallax("50%", 0.1);
+				// 		// $('.fifthslide').parallax("50%", 0.1);
+				// 		// $('.sixthslide').parallax("50%", 0.1);
+				// 		// $('.seventhslide').parallax("50%", 0.1);
+				// 		// $('.eighthslide').parallax("50%", 0.1);
 
+
+						//This makes each slide the height of the browser viewport
+						// $(window).on('resize', resize);
+						// function resize(){
+						// 	$('.slide').css({'height': $(window).height()});
+						// }
+
+					}
+
+				}); 
+
+		
 		/**** SHUFFLE.JS *****/
 
 		$(document).ready(function() {
@@ -381,12 +381,24 @@
 			margin-top:15px;
 			height:50px;
 		}
+		@media (max-width: 768px){
+			.firstslide {
+				max-height: 400px;
+				background: url('images/wildwood2.jpg') no-repeat auto;
+				background-size: contain;
+			}
+
+		}
 		@media (max-width: 400px){
+			.firstslide {
+				max-height: 320px;
+				background: url('images/wildwood2.jpg') no-repeat auto;
+				background-size: contain;
+			}
 			.filter-options .btn {
 				font-size: 14px;
 			}
 		}
-
 	</style>
 
 </head>
@@ -415,13 +427,13 @@ COVER
 
 	</div>
 
-	<div id="name-mobile" class="row visible-xs">
-		<div class="col-xs-12">
-			<h1>Sean Greene</h1>
-			<hr></hr>
-			<h2>journalist</h2>
+		<div id="name-mobile" class="row visible-xs">
+			<div class="col-xs-12">
+				<h1>Sean Greene</h1>
+				<hr></hr>
+				<h2>journalist</h2>
+			</div>
 		</div>
-	</div>
 
 <!--
 ***********************************************************************************
@@ -509,7 +521,7 @@ WORK SECTION
 		<div class="container-fluid filter">
 
 		    <div class="row-fluid">
-		      <div class="span9">
+		      <div class="span9 m-span6">
 		        <p class="filter__label">Filter:</p>
 		        <div class="filter-options btn-group">
 		          <button class="btn btn--warning" data-group="stories">Stories</button>
