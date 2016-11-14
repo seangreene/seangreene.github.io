@@ -10,10 +10,6 @@
     <script src="js/modernizr.custom.js"></script>
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-    <script src="js/shuffle.js"></script>
-    <link href="css/shuffle.style.css" rel="stylesheet">
-    <link href="css/shuffle.css" rel="stylesheet">
-
    
 	<style type="text/css">
 		@viewport{
@@ -95,6 +91,9 @@
 		h4 {
 			margin: 10px 0 10px 0;
 		}
+		img {
+			max-width: 100%;
+		}
 		p {
 			font-size: 18px;
 			line-height:24px;
@@ -111,6 +110,20 @@
   						-o-background-size: cover;
   			background-size: cover;
   			z-index:0;
+		}
+		.secondslide {
+			position:relative;
+			background-color:white;
+			z-index:200;
+			padding-top: 50px;
+			padding-bottom: 50px;
+		}
+		.thirdslide {
+			position:relative;
+			padding-top: 25px;
+			padding-bottom: 50px;
+			background-color: white;
+			z-index:200;
 		}
 
 		#name {
@@ -153,15 +166,6 @@
 			margin-top: 20px;
 		}
 
-
-		.secondslide {
-			position:relative;
-			background-color:white;
-			z-index:200;
-			padding-top: 10%;
-			padding-bottom: 10%;
-		}
-
 		.glyphicon {
 			color:#34495e;
 		}
@@ -174,60 +178,62 @@
 			margin: 5px;
 		}
 
-		.thirdslide {
-			position:relative;
-			padding-top: 5%;
-			padding-bottom: 50px;
-			background-color: white;
-			z-index:300;
-			min-height:1000px;
+		.filter p {
+			font-family: 'Open Sans', Arial, sans-serif;
 		}
-
-		#grid {
-			clear:both;
-			position:relative;
+		.filter p a:hover { cursor: pointer;}
+		#clipsbox {
+    		white-space: wrap;
 		}
-		.picture-item {
-			float:left;
-
+		#clipsbox .clip {
+			width: calc(33% - 15px);
+			display: inline-block;
+			margin: 15px 15px 20px 0;
+			vertical-align: top;
+			position: relative;
 		}
-		.picture-item__tags {
-			background: rgba(255,255,255,.8);
-			padding:0 4px;
-			border-radius: 4px;
+		#clipsbox .featured {
+			width: calc(66% - 15px);
 		}
-
-
-		.filter__label, .btn {
-			font-family: "Open Sans", Arial, sans-serif;
+		#clipsbox img {
+			width: 100%;
+		}
+		#clipsbox a img:hover {
+			opacity: 0.8;
+			cursor:pointer;
+		}
+		#clipsbox h4 {
+			font-size: 20px;
+			line-height: 26px;
+		    margin: 5px 0 0 0;
+		    font-weight: 100;
+		}
+		#clipsbox p.publication{
+			font-size: 18px;
+			line-height: 24px;
+			font-family: "Open Sans", Arial, sans-serif;			
+		    margin-bottom: 5px;
+		    font-weight: 600;
+		}
+		#clipsbox span {
+		    font-family: Georgia, serif;
+		    color: #333;
 			font-size: 16px;
+			line-height:21px;
 		}
-
-		figcaption a {
-			font-family: "Open Sans", Arial, sans-serif;
-			font-size: 18px;
-		}
-
-
-
-		.picture-item__description {
-			font-size: 18px;
-			font-family:Georgia;
-		}
-
-		.picture-item__inner {
-			position:relative;
-		}
-
-		.picture-item__tags {
+		#clipsbox .icons {
 			font-size: 14px;
 			position:absolute;
 			z-index:10;
 			top:3px;
 			right:5px;
+			background: rgba(255,255,255,.8);
+			padding:0 4px;
+			border-radius: 4px;
 		}
-
-
+		#clipsbox .icons span {
+			padding: 0 2px;
+		}
 		p.credit {
 			font-family: "Open Sans", Arial, sans-serif;
 			font-size:13px;
@@ -235,7 +241,7 @@
 			margin-top: 35px;
 			bottom: 15px;
 		}
-
+		.xs-break { display: none; }
 		@media (max-width: 768px){
 			.firstslide {
 				max-height: 400px;
@@ -244,9 +250,6 @@
 			}
 			#name {
 				top: 10%;
-			}
-			.filter-options .btn {
-				font-size: 14px;
 			}
 		}
 		@media (max-width: 767px){
@@ -281,12 +284,30 @@
 			}
 
 		}
+		@media (max-width: 600px){
+			#clipsbox .clip {
+				width: 100%;
+				margin: 20px 0 20px 0;
+			}
+			#clipsbox .featured {
+				width: 100%;
+				margin: 20px 0 20px 0;
+			}
+		}
+		@media (max-width: 400px){
+			.filter p { font-size: 14px;}
+		}
 		@media (max-width: 400px){
 			.firstslide {
 				max-height: 320px;
 			}
 			.filter-options .btn {
 				font-size: 14px;
+			}
+		}
+		@media (max-width: 320px){
+			.xs-break {
+				display: block;
 			}
 		}
 	</style>
@@ -300,96 +321,89 @@
 COVER
 ***********************************************************************************
 -->
+<div class="container">
+<div class="row firstslide slide" id="front">
 
-	<div class="row firstslide slide" id="front">
+	<div id="name" class="col-sm-6 col-sm-offset-3 col-xs-12 hidden-xs">
 
-		<div id="name" class="col-sm-6 col-sm-offset-3 col-xs-12 hidden-xs">
+		<img src="images/name.png" id="sean" class="img-responsive">
+		<div class="col-sm-6 col-sm-offset-3">
 
-			<img src="images/name.png" id="sean" class="img-responsive">
-			<div class="col-sm-6 col-sm-offset-3">
+			<hr></hr>
 
-				<hr></hr>
-
-				<h2>journalist</h2>
-			</div>
+			<h2>journalist</h2>
 		</div>
-
 	</div>
 
-		<div id="name-mobile" class="row visible-xs">
-			<div class="name col-xs-12">
-				<h1>Sean Greene</h1>
-				<hr></hr>
-				<h2>journalist</h2>
-			</div>
+</div>
+<div id="name-mobile" class="row visible-xs">
+	<div class="name col-xs-12">
+		<h1>Sean Greene</h1>
+		<hr></hr>
+		<h2>journalist</h2>
+	</div>
 
-			<div class="mobile-img">
-				<img src="images/wildwood2.jpg" />
-			</div>
-		</div>
-
+	<div class="mobile-img">
+		<img src="images/wildwood2.jpg" />
+	</div>
+</div>
 <!--
 ***********************************************************************************
 ABOUT SECTION
 ***********************************************************************************
 -->
-	<div id="about" class="row secondslide">
+<div id="about" class="row secondslide">
 
-		<div class="col-sm-10 col-sm-offset-1">
+	<div class="col-sm-10 col-sm-offset-1">
 
-			<div class="col-sm-6 col-xs-12">
+		<div class="col-sm-6 col-xs-12">
 
-				<h3>About Me</h3>
+			<h3>About Me</h3>
 
-				<hr></hr>
+			<hr></hr>
 
-				<p>Hi, I'm Sean. I'm a journalist specializing in digital storytelling.</p>
-				<p>I'm currently a digital producer at the <a href="http://www.latimes.com/la-bio-sean-greene-staff.html" target="_blank">Los Angeles Times</a>. My work has also appeared in Bay Nature Magazine, KQED, the Ventura County Star and the Orange County Register.</p>
-				<p>In 2014, I graduated from the UC Berkeley Graduate School of Journalism (<a href="http://journalism.berkeley.edu/alumni/sean_greene/" target=blank>here's my alumni profile</a>) and I won my fantasy soccer league.</p>
+			<p>Hi, I'm Sean. I'm a journalist specializing in digital storytelling.</p>
+			<p>I'm currently a digital producer at the <a href="http://www.latimes.com/la-bio-sean-greene-staff.html" target="_blank">Los Angeles Times</a>. My work has also appeared in Bay Nature Magazine, KQED, the Ventura County Star and the Orange County Register.</p>
+			<p>In 2014, I graduated from the UC Berkeley Graduate School of Journalism (<a href="http://journalism.berkeley.edu/alumni/sean_greene/" target=blank>here's my alumni profile</a>) and I won my fantasy soccer league.</p>
 
-				<br /><br />
+			<br /><br />
 
-				<h3>Contact</h3>
+			<h3>Contact</h3>
 
-				<hr></hr>
+			<hr></hr>
 
-					<p>Email me: <a href="mailto:sean.greene@latimes.com">L.A. Times</a> | <a href="mailto:seangreene89@gmail.com">Personal</a> | <a href="sg-public-key.rtf" download>Download my PGP key</a></p>
+				<p>Email me: <a href="mailto:sean.greene@latimes.com">L.A. Times</a> | <a href="mailto:seangreene89@gmail.com">Personal</a> | <a href="sg-public-key.rtf" download>Download my PGP key</a></p>
 
-					<div id="social_icons">
-						<a href="http://twitter.com/seangreene89" target="blank">
-							<img src="social/iso-color/twitter-iso-color.png" />
-						</a>
-						<a href="http://instagram.com/seangreene89" target="blank">
-							<img src="social/iso-color/instagram-iso-color.png"/>
-						</a>
-						<a href="http://linkedin.com/pub/sean-greene/24/787/b40" target="blank">
-							<img src="social/iso-color/linkedin-iso-color.png"/>
-						</a>
-						<a href="http://sean-greene.tumblr.com" target="blank">
-							<img src="social/iso-color/tumblr-iso-color.png" />
-						</a>				
-					</div>
-			</div>
-
-			<div class="col-sm-6 col-xs-12">
-				<img src="images/mugu.jpg" class="photo img-responsive">
-			</div>
-
+				<div id="social_icons">
+					<a href="http://twitter.com/seangreene89" target="blank">
+						<img src="social/iso-color/twitter-iso-color.png" />
+					</a>
+					<a href="http://instagram.com/seangreene89" target="blank">
+						<img src="social/iso-color/instagram-iso-color.png"/>
+					</a>
+					<a href="http://linkedin.com/pub/sean-greene/24/787/b40" target="blank">
+						<img src="social/iso-color/linkedin-iso-color.png"/>
+					</a>
+					<a href="http://sean-greene.tumblr.com" target="blank">
+						<img src="social/iso-color/tumblr-iso-color.png" />
+					</a>				
+				</div>
 		</div>
+
+		<figure class="col-sm-6 col-xs-12">
+			<img src="images/mugu.jpg" class="photo img-responsive">
+		</figure>
+
 	</div>
-
-
-<!-- <div class="row hidden-xs" id="pano">
-
-</div> -->
+</div>
 
 <!--
 ***********************************************************************************
-WORK SECTION
+CLIPS SECTION
 ***********************************************************************************
 -->
 
-<div id="work" class="thirdslide row">
+<div id="work" class="row thirdslide">
 	
 	<div class="col-sm-10 col-sm-offset-1">
 
@@ -397,341 +411,12 @@ WORK SECTION
 		
 		<hr></hr>
 	    <!--Filter/Sort controls -->
+	    <div class="filter">
+	    	<p>Filter: <br class="xs-break"><a id="stories">Stories</a> | <a id="code">Code</a> | <a id="multimedia">Multimedia</a> | <a id="all">Show all</a></p>
+	    </div>
+		<div id="clipsbox"></div>
 
-		<div class="container-fluid filter">
-
-		    <div class="row-fluid">
-		      <div class="span9 m-span6">
-		        <p class="filter__label">Filter:</p>
-		        <div class="filter-options btn-group">
-		          <button class="btn btn--warning" data-group="stories">Stories</button>
-		          <button class="btn btn--warning" data-group="code">Code &amp; Design</button>
-		          <button class="btn btn--warning" data-group="multimedia">Multimedia</button>
-		          <button class="btn btn--warning" data-group="masters">Master's Project</button>
-		        </div>
-		      </div>
-
-	    	</div><!--row-fluid -->
-		</div><!-- container-fluid filter-->
-
-		<!--
-		TILES
-		-->
-		
-		<div class="container-fluid"><!--tile container-->
-		  <div id="grid" class="row-fluid m-row shuffle--container shuffle--fluid shuffle">
-
-		<figure class="span3 m-span6 picture-item picture-item--h2" data-groups='["code"]' data-date-created="2015-07-01" data-title="Beer guide">
-		  <div class="picture-item__inner">
-		    <img src="http://www.trbimg.com/img-55920134/turbine/la-fo-beerguide-studio-photos-20150611-012/800" alt="" height="145" width="230" />
-		    <p class="picture-item__tags pull-right">
-		    	<span class="glyphicon glyphicon-chevron-left"></span><span class="glyphicon glyphicon-chevron-right"></span>
-		    </p>
-		    <div class="picture-item__details clearfix">
-		      <figcaption class="picture-item__title pull-left"><a href="http://graphics.latimes.com/beerguide/" target="_blank">L.A.'s best craft beer - Los Angeles Times</a></figcaption>
-		    </div>
-		    <p class="picture-item__description">I helped conceptualize and build a guide to L.A.'s craft beer scene.</p>
-		  </div>
-		</figure>
-
-		<figure class="span6 m-span6 picture-item picture-item--h2" data-groups='["code"]' data-date-created="2015-05-09" data-title="Future of">
-		  <div class="picture-item__inner">
-		    <img src="http://www.trbimg.com/img-554b9d25/turbine/la-tr-cuba-van-der-brug-20150505-002/800" alt="" height="145" width="230" />
-		    <p class="picture-item__tags pull-right">
-		    	<span class="glyphicon glyphicon-chevron-left"></span><span class="glyphicon glyphicon-chevron-right"></span>
-		    </p>
-		    <div class="picture-item__details clearfix">
-		      <figcaption class="picture-item__title pull-left"><a href="http://graphics.latimes.com/travel-to-cuba/" target="_blank">Unlocking Cuba - Los Angeles Times</a></figcaption>
-		    </div>
-		    <p class="picture-item__description">A package of travel stories about Cuba, including two special multimedia pages -- <a href="http://graphics.latimes.com/cuba-cars/" target="_blank">a fun grid of classic car door handles</a> and <a href="http://graphics.latimes.com/cuba-photos/" target="_blank">a fullscreen photo story</a>.</p>
-		  </div>
-		</figure>  
-
-		<figure class="span3 m-span6 picture-item picture-item--h2" data-groups='["code"]' data-date-created="2015-01-01" data-title="Socal Moments 2014">
-		  <div class="picture-item__inner">
-		    <img src="http://www.trbimg.com/img-5498d5f7/turbine/la-scm-2014-main-image-20141222/800" alt="" height="145" width="230" />
-		    <p class="picture-item__tags pull-right">
-		    	<span class="glyphicon glyphicon-chevron-left"></span><span class="glyphicon glyphicon-chevron-right"></span>
-		    </p>
-		    <div class="picture-item__details clearfix">
-		      <figcaption class="picture-item__title pull-left"><a href="http://graphics.latimes.com/socal-moments-2014/" target="_blank">Every Southern California Moment of 2014 - Los Angeles Times</a></figcaption>
-		    </div>
-		    <p class="picture-item__description">An interactive grid compiling reader photos. Uses a masonry layout and lightbox viewer.</p>
-		  </div>
-		</figure>
-
-		<!-- LAT written clips -->
-
-		<figure class="span3 m-span6 picture-item" data-groups='["stories"]' data-date-created="2015-06-11" data-title="Serengeti photos">
-			  <div class="picture-item__inner">
-			    <img src="http://www.trbimg.com/img-5578c784/turbine/la-sci-sn-serengeti-photos-20150608-021/600/16x9" alt="" height="145" width="230" />
-			    <p class="picture-item__tags pull-right">
-			    	<span class="glyphicon glyphicon-pencil"></span>
-			    </p>
-			    <div class="picture-item__details clearfix">
-			      <figcaption class="picture-item__title pull-left"><a href="http://www.latimes.com/science/sciencenow/la-sci-sn-snapshot-serengeti-20150610-story.html" target="_blank">This is what happens when you scatter 225 cameras around the Serengeti - Los Angeles Times</a></figcaption>
-			    </div>
-			  </div>
-			</figure>
-
-
-			<figure class="span3 m-span6 picture-item" data-groups='["stories", "code"]' data-date-created="2015-04-17" data-title="California's national parks">
-			  <div class="picture-item__inner">
-			    <img src="http://www.trbimg.com/img-553149a5/turbine/la-tr-california-national-parks-20150417-001/600/16x9" alt="" height="145" width="230" />
-			    <p class="picture-item__tags pull-right">
-				    <span class="glyphicon glyphicon-pencil"></span>
-			    </p>
-			    <div class="picture-item__details clearfix">
-			      <figcaption class="picture-item__title pull-left"><a href="http://www.latimes.com/travel/california/la-tr-california-national-parks-20150417-htmlstory.html" target="_blank">California's national parks: A photographic history seen through The Times' archives - Los Angeles Times</a></figcaption>
-			    </div>
-			  </div>
-			</figure>
-
-
-			<figure class="span3 m-span6 picture-item" data-groups='["stories"]' data-date-created="2015-04-24" data-title="Hubble anniversary">
-			  <div class="picture-item__inner">
-			    <img src="http://www.trbimg.com/img-5539c471/turbine/la-na-sn-hubble-space-telescope-25th-anniversa-007/600/16x9" alt="" height="145" width="230" />
-			    <p class="picture-item__tags pull-right">
-			    	<span class="glyphicon glyphicon-pencil"></span>
-			    </p>
-			    <div class="picture-item__details clearfix">
-			      <figcaption class="picture-item__title pull-left"><a href="http://www.latimes.com/science/la-sci-sn-hubble-space-telescope-25th-anniversary-20150424-story.html" target="_blank">How the Hubble Space Telescope has changed our view of the universe - Los Angeles Times</a></figcaption>
-			    </div>
-			  </div>
-			</figure>
-
-			        
-			<figure class="span3 m-span6 picture-item" data-groups='["stories"]' data-date-created="2013-10-16" data-title="USGS seafloor">
-			  <div class="picture-item__inner">
-			    <img src="http://www.trbimg.com/img-550b5abf/turbine/la-usgs-seafloor-images-20150318-022/600/16x9" alt="" height="145" width="230" />
-			    <p class="picture-item__tags pull-right">
-			      	<span class="glyphicon glyphicon-pencil"></span>
-			    </p>
-			    <div class="picture-item__details clearfix">
-			      <figcaption class="picture-item__title pull-left"><a href="http://www.latimes.com/science/sciencenow/la-sci-sn-explore-ocean-floor-usgs-20150319-story.html" target="_blank">Scientists explore 2,000 miles of the ocean floor -- and you can too - Los Angeles Times</a></figcaption>
-			    </div>
-			  </div>
-			</figure>
-		<!-- /LAT written -->
-
-		<figure class="span3 m-span6 picture-item picture-item--h2" data-groups='["stories"]' data-date-created="2014-11-03" data-title="LFC history">
-		  <div class="picture-item__inner">
-		    <img src="thumbs/lfcxtra.jpg" alt="" height="145" width="230" />
-		    <p class="picture-item__tags pull-right">
-		    	<span class="glyphicon glyphicon-pencil"></span>
-		    </p>
-		    <div class="picture-item__details clearfix">
-		      <figcaption class="picture-item__title pull-left"><a href="http://xtra.liverpoolfc.com/news/football-didn-t-begin-in-1992-the-pre-premier-league-history-of-liverpool-fc-in-10-facts" target="_blank">The pre-Premier League history of Liverpool FC in 10 facts - LFC XTRA</a></figcaption>
-		    </div>
-		    <p class="picture-item__description">I proudly contributed a story to my favorite soccer team's fan website.</p>
-
-		  </div>
-		</figure>
-
-		<figure class="span3 m-span6 picture-item picture-item--h2" data-groups='["stories"]' data-date-created="2014-05-22" data-title="The Jumbo Squid">
-			  <div class="picture-item__inner">
-			    <img src="thumbs/squid.jpg" alt="" height="145" width="230" />
-			    <p class="picture-item__tags pull-right">
-			    	<span class="glyphicon glyphicon-pencil"></span>
-			    </p>
-			    <div class="picture-item__details clearfix">
-			      <figcaption class="picture-item__title pull-left"><a href="https://medium.com/@BayNature/the-jumbo-squid-have-left-california-or-have-they-915edd5f083f" target="_blank">The Jumbo Squid Have Left California. Or Have They? - Bay Nature</a></figcaption>
-			    </div>
-			    <p class="picture-item__description">“All of a sudden the cooler was full of red blood. Squid blood isn’t red, so I knew it was me.”</p>
-			  </div>
-			</figure>
-
-
-			<figure class="span6 m-span6 picture-item picture-item--h2" data-groups='["masters","code","stories","multimedia"]' data-date-created="2014-05-12" data-title="Climate California">
-			  <div class="picture-item__inner">
-			    <img src="thumbs/climatecalifornia.png" alt="" height="145" width="230" />
-			    <p class="picture-item__tags pull-right">
-			    	<span class="glyphicon glyphicon-pencil"></span> 
-			    	<span class="glyphicon glyphicon-chevron-left"></span><span class="glyphicon glyphicon-chevron-right"></span> 
-			    	<span class="glyphicon glyphicon-camera"></span> 
-			    	<span class="glyphicon glyphicon-star"></span>
-			    </p>
-			    <div class="picture-item__details clearfix">
-			      <figcaption class="picture-item__title pull-left"><a href="http://climatecalifornia.com" target="_blank">Climate California</a></figcaption>			      
-			    </div>
-			    <p class="picture-item__description">Stories from the front lines in the battle against climate change. My graduate school master's project, a four-part multimedia narrative.</p>
-			  </div>
-			</figure>
-
-
-			<figure class="span3 m-span6 picture-item" data-groups='["stories"]' data-date-created="2014-04-07" data-title="Living Shorelines">
-			  <div class="picture-item__inner">
-			    <img src="thumbs/shoreline2.jpg" alt="" height="145" width="230" />
-			    <p class="picture-item__tags pull-right">
-			    	<span class="glyphicon glyphicon-pencil"></span>
-			    </p>
-			    <div class="picture-item__details clearfix">
-			      <figcaption class="picture-item__title pull-left"><a href="http://baynature.org/articles/living-shorelines/" target="_blank">Living Shorelines - Bay Nature</a></figcaption>
-			    </div>
-			  </div>
-			</figure>
-
-
-			<figure class="span3 m-span6 picture-item" data-groups='["code"]' data-date-created="2014-05-12" data-title="Cyclic Drought">
-			  <div class="picture-item__inner">
-			    <img src="thumbs/droughtchart.jpg" alt="" height="145" width="230" />
-			    <p class="picture-item__tags pull-right">
-			      	<span class="glyphicon glyphicon-chevron-left"></span><span class="glyphicon glyphicon-chevron-right"></span>
-			    </p>
-			    <div class="picture-item__details clearfix">
-			      <figcaption class="picture-item__title pull-left"><a href="http://seangreene.github.com/Drought-Chart-Demo/" target="_blank">Cyclic Drought - Climate California</a></figcaption>
-			    </div>
-			  </div>
-			</figure>
-
-
-			<figure class="span3 m-span6 picture-item" data-groups='["code"]' data-date-created="2013-12-12" data-title="Buying a Spot in English Soccer's Top Flight">
-			  <div class="picture-item__inner">
-			    <img src="thumbs/soccerviz.jpg" alt="" height="145" width="230" />
-			    <p class="picture-item__tags pull-right">
-			      	<span class="glyphicon glyphicon-chevron-left"></span><span class="glyphicon glyphicon-chevron-right"></span>
-			    </p>
-			    <div class="picture-item__details clearfix">
-			      <figcaption class="picture-item__title pull-left"><a href="http://seangreene.github.com/EPL-Project/" target="_blank">Buying a Spot in English Soccer's Top Flight</a></figcaption>
-			    </div>
-			  </div>
-			</figure>
-
-			        
-			<figure class="span3 m-span6 picture-item" data-groups='["stories"]' data-date-created="2013-10-16" data-title="Earthquake Weather">
-			  <div class="picture-item__inner">
-			    <img src="thumbs/earthquakeweather.jpg" alt="" height="145" width="230" />
-			    <p class="picture-item__tags pull-right">
-			      	<span class="glyphicon glyphicon-pencil"></span>
-			    </p>
-			    <div class="picture-item__details clearfix">
-			      <figcaption class="picture-item__title pull-left"><a href="http://baynature.org/articles/earthquake-weather/" target="_blank">Is There Earthquake Weather? - Bay Nature</a></figcaption>
-			    </div>
-			  </div>
-			</figure>
-
-
-			<figure class="span6 m-span6 picture-item" data-groups='["multimedia","code"]' data-date-created="2013-05-15" data-title="Point Molate">
-			  <div class="picture-item__inner">
-			    <img src="thumbs/molate.jpg" alt="" height="145" width="230" />
-			    <p class="picture-item__tags pull-right">
-			    	<span class="glyphicon glyphicon-chevron-left"></span><span class="glyphicon glyphicon-chevron-right"></span>
-			    	<span class="glyphicon glyphicon-camera"></span>
-			    </p>
-			    <div class="picture-item__details clearfix">
-			      <figcaption class="picture-item__title pull-left"><a href="http://richmondconfidential.org/2013/05/15/inside-the-point-molate-naval-fuel-depot/" target="_blank">Inside the Point Molate Naval Fuel Depot - Richmond Confidential</a></figcaption>
-			    </div>
-			  </div>
-			</figure>        
-
-
-			<figure class="span6 m-span6 picture-item" data-groups='["stories","multimedia"]' data-date-created="2013-04-24" data-title="On top of the world">
-			  <div class="picture-item__inner">
-			    <img src="thumbs/kami.jpg" alt="" height="145" width="230" />
-			    <p class="picture-item__tags pull-right">
-			    	<span class="glyphicon glyphicon-pencil"></span>
-					<span class="glyphicon glyphicon-camera"></span>
-			    </p>
-			    <div class="picture-item__details clearfix">
-			      <figcaption class="picture-item__title pull-left"><a href="http://richmondconfidential.org/2013/04/24/on-top-of-the-world/" target="_blank">On top of the world - Richmond Confidential</a></figcaption>
-			    </div>
-			  </div>
-			</figure>
-
-
-			<figure class="span3 m-span6 picture-item" data-groups='["stories"]' data-date-created="2013-04-22" data-title="Chevron fire investigation">
-			  <div class="picture-item__inner">
-			    <img src="thumbs/chevron.jpg" alt="" height="145" width="230" />
-			    <p class="picture-item__tags pull-right">
-			    	<span class="glyphicon glyphicon-pencil"></span>
-			    </p>
-			    <div class="picture-item__details clearfix">
-			      <figcaption class="picture-item__title pull-left"><a href="http://richmondconfidential.org/2013/04/22/feds-approve-results-of-chevron-fire-investigation" target="_blank">Feds approve results of Chevron fire investigation - Richmond Confidential</a></figcaption>
-			    </div>
-			  </div>
-			</figure>
-
-
-			<figure class="span3 m-span6 picture-item" data-groups='["stories"]' data-date-created="2013-03-26" data-title="3D Printing">
-			  <div class="picture-item__inner">
-			    <img src="thumbs/3dprinting.jpg" alt="" height="145" width="230" />
-			    <p class="picture-item__tags pull-right">
-			      	<span class="glyphicon glyphicon-pencil"></span>
-			    </p>
-			    <div class="picture-item__details clearfix">
-			      <figcaption class="picture-item__title pull-left"><a href="http://science.kqed.org/quest/2013/03/26/uc-berkeley-students-build-3d-printing-vending-machine/" target="_blank">UC Berkeley Students Build 3D Printing Vending Machine - KQED</a></figcaption>
-			    </div>
-			    
-			  </div>
-			</figure>
-
-			<figure class="span3 m-span6 picture-item" data-groups='["code"]' data-date-created="2013-03-20" data-title="Green energy">
-			  <div class="picture-item__inner">
-			    <img src="thumbs/greenenergy.png" alt="" height="145" width="230" />
-			    <p class="picture-item__tags pull-right">
-			      	<span class="glyphicon glyphicon-chevron-left"></span><span class="glyphicon glyphicon-chevron-right"></span>
-				</p>
-			    <div class="picture-item__details clearfix">
-			      <figcaption class="picture-item__title pull-left"><a href="http://richmondconfidential.org/2013/03/20/green-electricity-program-coming-to-richmond/" target="_blank">'Green' electricity program coming to Richmond - Richmond Confidential</a></figcaption>
-			    </div>
-			  </div>
-			</figure>
-
-			<figure class="span3 m-span6 picture-item" data-groups='["code"]' data-date-created="2013-03-06" data-title="Richmond soda tax">
-			  <div class="picture-item__inner">
-			    <img src="thumbs/sodatax.jpg" alt="" height="145" width="230" />
-			    <p class="picture-item__tags pull-right">
-			    	<span class="glyphicon glyphicon-pencil"></span>
-				</p>
-			    <div class="picture-item__details clearfix">
-			      <figcaption class="picture-item__title pull-left"><a href="http://richmondconfidential.org/2013/03/06/as-california-considers-soda-tax-richmond-refocuses-debate-on-health/" target="_blank">As California considers soda tax, Richmond refocuses debate on health - R.C.</a></figcaption>
-			    </div>
-			  </div>
-			</figure>
-
-			<figure class="span6 m-span6 picture-item" data-groups='["code"]' data-date-created="2013-02-06" data-title="Young poets to stage Richmond-set Romeo and Juliet">
-			  <div class="picture-item__inner">
-			    <img src="thumbs/rawtalent.jpg" alt="" height="145" width="230" />
-			     <p class="picture-item__tags pull-right">
-			      	<span class="glyphicon glyphicon-chevron-left"></span><span class="glyphicon glyphicon-chevron-right"></span>
-				</p>
-			    <div class="picture-item__details clearfix">
-			      <figcaption class="picture-item__title pull-left"><a href="http://richmondconfidential.org/2013/02/06/young-poets-to-stage-richmond-set-romeo-and-juliet/" target="_blank">Young poets to stage Richmond-set 'Romeo and Juliet' - Richmond Confidential</a></figcaption>
-			    </div>
-			  </div>
-			</figure>	
-
-			<figure class="span3 m-span6 picture-item" data-groups='["stories","code","multimedia"]' data-date-created="2012-11-26" data-title="Wading with the oyster catchers">
-			  <div class="picture-item__inner">
-			    <img src="thumbs/oysters.jpg" alt="" height="145" width="230" />
-			    <p class="picture-item__tags pull-right">
-			    	<span class="glyphicon glyphicon-pencil"></span>
-			      	<span class="glyphicon glyphicon-chevron-left"></span><span class="glyphicon glyphicon-chevron-right"></span>
-			      	<span class="glyphicon glyphicon-camera"></span>
-				</p>
-			    <div class="picture-item__details clearfix">
-			      <figcaption class="picture-item__title pull-left"><a href="http://richmondconfidential.org/2012/11/26/wading-with-the-oyster-catchers/" target="_blank">Wading with the oyster catchers - Richmond Confidential</a></figcaption>
-			    </div> 
-			  </div>
-			</figure>
-
-			<figure class="span3 m-span6 picture-item" data-groups='["stories]' data-date-created="2012-10-15" data-title="Mike Raccoon Eyes Kinney">
-			  <div class="picture-item__inner">
-			    <img src="thumbs/raccooneyes.jpg" alt="" height="145" width="230" />
-			    <p class="picture-item__tags pull-right">
-			     	<span class="glyphicon glyphicon-pencil"></span>
-				</p>			    
-			    <div class="picture-item__details clearfix">
-			      <figcaption class="picture-item__title pull-left"><a href="http://richmondconfidential.org/2012/10/15/city-council-election-2012-mike-raccoon-eyes-kinney/" target="_blank">Mike Raccoon Eyes Kinney - Richmond Confidential</a></figcaption>
-			    </div>			    
-			  </div>
-			</figure>
-
-			    <div class="span3 m-span6 shuffle__sizer"></div>
-			  </div><!--#grid -->
-		</div><!--tile container-->
-
-	</div><!--col-sm-11 col-sm-offset-1-->
+	</div>
 
 	<div class="col-sm-2 col-sm-offset-5">
 		<p class="credit">Site design by Sean Greene</p>
@@ -739,67 +424,292 @@ WORK SECTION
 
 
 </div>
-
+</div>
 <script>
 
 	$('.slide').css({'height': $(window).height()});
 	
+	var clips = [
+		  {
+		    "headline": "How ‘Goldilocks fires’ can give rise to vibrant bird communities years after a forest blaze",
+		    "subhead": "",
+		    "publication": "Los Angeles Times",
+		    "date": "2016-10-10",
+		    "image": "http://www.trbimg.com/img-57f59195/turbine/la-1475711561-snap-photo/600/16x9",
+		    "link": "http://www.latimes.com/science/sciencenow/la-sci-sn-wildfire-bird-diversity-20161007-snap-story.html",
+		    "tags": "stories",
+		    "featured": ""
+		  },
+		  {
+		    "headline": "Better late than never: Scientists discover amazing tool-wielding ability of nearly extinct Hawaiian crows",
+		    "subhead": "",
+		    "publication": "Los Angeles Times",
+		    "date": "2016-09-16",
+		    "image": "http://www.trbimg.com/img-57d8f18a/turbine/la-1473835534-snap-photo/600/16x9",
+		    "link": "http://www.latimes.com/science/sciencenow/la-sci-sn-hawaiian-crow-tools-20160913-snap-story.html",
+		    "tags": "stories",
+		    "featured": ""
+		  },
+		  {
+		    "headline": "When it’s too noisy for bats to listen for their prey, they use echolocation to hunt instead",
+		    "subhead": "",
+		    "publication": "Los Angeles Times",
+		    "date": "2016-09-15",
+		    "image": "http://www.trbimg.com/img-57d701d2/turbine/la-1473708624-snap-photo/600/16x9",
+		    "link": "http://www.latimes.com/science/sciencenow/la-sci-sn-bats-noise-echolocation-20160915-snap-story.html",
+		    "tags": "stories",
+		    "featured": ""
+		  },		  
+		  {
+		    "headline": "L.A.’s mountain lions could be near extinction in 50 years",
+		    "subhead": "",
+		    "publication": "Los Angeles Times",
+		    "date": "2016-08-31",
+		    "image": "http://www.trbimg.com/img-57c5df8b/turbine/la-1472585709-snap-photo/600/16x9",
+		    "link": "http://www.latimes.com/science/sciencenow/la-sci-sn-mountain-lions-threat-20160830-snap-story.html",
+		    "tags": "stories",
+		    "featured": ""
+		  },
+		  {
+		    "headline": "Hunter calls. Bird responds. And together they find honey.",
+		    "subhead": "",
+		    "publication": "Los Angeles Times",
+		    "date": "2016-06-21",
+		    "image": "http://www.trbimg.com/img-578d6a97/turbine/la-sci-sn-honey-hunter-sounds-20160718-001/600/16x9",
+		    "link": "http://www.latimes.com/science/sciencenow/la-sci-sn-human-honeyguide-cooperation-20160721-snap-story.html",
+		    "tags": "stories",
+		    "featured": ""
+		  },
+		  {
+		    "headline": "Pokemon Go' players are finding real animals while searching for digital ones",
+		    "subhead": "",
+		    "publication": "Los Angeles Times",
+		    "date": "2016-06-11",
+		    "image": "http://www.trbimg.com/img-57db1c3f/turbine/la-sci-sn-pokemon-go-real-animals-20160711-20160711-snap/600/16x9",
+		    "link": "http://www.latimes.com/science/sciencenow/la-sci-sn-pokemon-go-real-animals-20160711-20160711-snap-story.html",
+		    "tags": "stories",
+		    "featured": ""
+		  },
+		  {
+		    "headline": "Holy bat sounds! Unusual library will help scientists track bat species",
+		    "subhead": "",
+		    "publication": "Los Angeles Times",
+		    "date": "2016-05-19",
+		    "image": "http://www.trbimg.com/img-573d3e93/turbine/la-sci-sn-bat-sounds-library-20160520-snap/600/16x9",
+		    "link": "http://www.latimes.com/projects/bat-sounds-library/",
+		    "tags": "stories code",
+		    "featured": ""
+		  },
+		  {
+		    "headline": "We've never seen this before': Watch NOAA's live feed of a hidden, watery world",
+		    "subhead": "",
+		    "publication": "Los Angeles Times",
+		    "date": "2016-05-05",
+		    "image": "http://www.trbimg.com/img-5727cb38/turbine/la-sci-sn-noaas-okeanos-explorer-marianas-tren-022/600/16x9",
+		    "link": "http://static.latimes.com/okeanos-explorer/",
+		    "tags": "stories code",
+		    "featured": "featured"
+		  },
+		  {
+		    "headline": "Quiz: How many national parks have you visited?",
+		    "subhead": "",
+		    "publication": "Los Angeles Times",
+		    "date": "2016-04-18",
+		    "image": "http://www.trbimg.com/img-571a72e0/turbine/la-tr-national-parks-quiz-20160418/600/16x9",
+		    "link": "http://www.latimes.com/travel/la-tr-national-parks-quiz-20160418-htmlstory.html",
+		    "tags": "code",
+		    "featured": ""
+		  },
+		  {
+		    "headline": "Yosemite's granite cliffs are 'breathing,' and heat can make them fall",
+		    "subhead": "My first A1 story for the L.A. Times",
+		    "publication": "Los Angeles Times",
+		    "date": "2016-03-28",
+		    "image": "http://www.trbimg.com/img-56f96c99/turbine/la-sci-sn-yosemite-rockfalls-heat-20160328-002/600/16x9",
+		    "link": "http://www.latimes.com/science/sciencenow/la-sci-sn-yosemite-rockfalls-heat-20160328-story.html",
+		    "tags": "stories",
+		    "featured": "featured"
+		  },
+		  {
+		    "headline": "Weird, Ugly, Rare",
+		    "subhead": "I designed and developed the website for a Bay Nature biodiversity series.",
+		    "publication": "Bay Nature",
+		    "date": "2016-03-10",
+		    "image": "thumbs/damselfish.jpg",
+		    "link": "http://baynature.org/biodiversity/",
+		    "tags": "code",
+		    "featured": ""
+		  },
+		  {
+		    "headline": "Celebrating our national parks",
+		    "subhead": "I helped produce the travel section's yearlong national park series.",
+		    "publication": "Los Angeles Times",
+		    "date": "2016-01-01",
+		    "image": "http://www.trbimg.com/img-574dbef9/turbine/la-tr-year-of-national-parks-20160131/600/16x9",
+		    "link": "http://www.latimes.com/nationalparks",
+		    "tags": "code",
+		    "featured": ""
+		  },
+		  {
+		    "headline": "L.A.'s best craft beer",
+		    "subhead": "I helped conceptualize and build a guide to L.A.'s craft beer scene.",
+		    "publication": "Los Angeles Times",
+		    "date": "2015-07-01",
+		    "image": "http://www.trbimg.com/img-55920134/turbine/la-fo-beerguide-studio-photos-20150611-012/600/16x9",
+		    "link": "http://graphics.latimes.com/beerguide/",
+		    "tags": "code",
+		    "featured": ""
+		  },
+		  {
+		    "headline": "California's national parks: A photographic history seen through The Times' archives",
+		    "subhead": "",
+		    "publication": "Los Angeles Times",
+		    "date": "2015-06-11",
+		    "image": "http://www.trbimg.com/img-553149a5/turbine/la-tr-california-national-parks-20150417-001/600/16x9",
+		    "link": "http://www.latimes.com/travel/california/la-tr-california-national-parks-20150417-htmlstory.html",
+		    "tags": "stories",
+		    "featured": ""
+		  },
+		  {
+		    "headline": "Unlocking Cuba",
+		    "subhead": "A package of travel stories about Cuba, including two special multimedia pages -- <a href=\"http://graphics.latimes.com/cuba-cars/\" target=\"_blank\">a fun grid of classic car door handles</a> and <a href=\"http://graphics.latimes.com/cuba-photos/\" target=\"_blank\">a fullscreen photo story</a>.",
+		    "publication": "Los Angeles Times",
+		    "date": "2015-05-09",
+		    "image": "http://www.trbimg.com/img-554b9d25/turbine/la-tr-cuba-van-der-brug-20150505-002/600/16x9",
+		    "link": "http://graphics.latimes.com/travel-to-cuba/",
+		    "tags": "code",
+		    "featured": ""
+		  },
+		  {
+		    "headline": "The pre-Premier League history of Liverpool FC in 10 facts",
+		    "subhead": "I proudly contributed a story to my favorite soccer team's fan website.",
+		    "publication": "LFC XTRA",
+		    "date": "2014-11-03",
+		    "image": "thumbs/lfcxtra.jpg",
+		    "link": "http://xtra.liverpoolfc.com/news/football-didn-t-begin-in-1992-the-pre-premier-league-history-of-liverpool-fc-in-10-facts",
+		    "tags": "stories",
+		    "featured": ""
+		  },
+		  {
+		    "headline": "The Jumbo Squid Have Left California. Or Have They?",
+		    "subhead": "“All of a sudden the cooler was full of red blood. Squid blood isn’t red, so I knew it was me.”",
+		    "publication": "Bay Nature",
+		    "date": "2014-05-22",
+		    "image": "thumbs/squid.jpg",
+		    "link": "https://medium.com/@BayNature/the-jumbo-squid-have-left-california-or-have-they-915edd5f083f",
+		    "tags": "stories stories multimedia",
+		    "featured": ""
+		  },
+		  {
+		    "headline": "Climate California",
+		    "subhead": "My graduate school master's project, a four-part multimedia narrative.",
+		    "publication": "UC Berkeley",
+		    "date": "2014-05-12",
+		    "image": "thumbs/climatecalifornia.png",
+		    "link": "http://climatecalifornia.com",
+		    "tags": "stories code multimedia",
+		    "featured": "featured"
+		  },
+		  {
+		    "headline": "Living Shorelines",
+		    "subhead": "",
+		    "publication": "Bay Nature",
+		    "date": "2014-04-07",
+		    "image": "thumbs/shoreline2.jpg",
+		    "link": "http://baynature.org/articles/living-shorelines/",
+		    "tags": "stories",
+		    "featured": ""
+		  },
+		  {
+		    "headline": "Buying a Spot in English Soccer's Top Flight",
+		    "subhead": "A data visualization on the English Premier League, made using D3.js for a class.",
+		    "publication": "",
+		    "date": "2013-12-12",
+		    "image": "thumbs/soccerviz.jpg",
+		    "link": "http://seangreene.github.io/EPL-Project/",
+		    "tags": "code",
+		    "featured": ""
+		  },
+		  {
+		    "headline": "Is There Earthquake Weather?",
+		    "subhead": "",
+		    "publication": "Bay Nature",
+		    "date": "2013-10-16",
+		    "image": "thumbs/earthquakeweather.jpg",
+		    "link": "http://baynature.org/article/earthquake-weather/",
+		    "tags": "stories",
+		    "featured": ""
+		  },
+		  {
+		    "headline": "On top of the world",
+		    "subhead": "",
+		    "publication": "Richmond Confidential",
+		    "date": "2013-04-24",
+		    "image": "thumbs/kami.jpg",
+		    "link": "http://richmondconfidential.org/2013/04/24/on-top-of-the-world/",
+		    "tags": "stories multimedia",
+		    "featured": ""
+		  },
+		  {
+		    "headline": "As California considers soda tax, Richmond refocuses debate on health",
+		    "subhead": "",
+		    "publication": "Richmond Confidential",
+		    "date": "2013-03-06",
+		    "image": "thumbs/sodatax.jpg",
+		    "link": "http://richmondconfidential.org/2013/03/06/as-california-considers-soda-tax-richmond-refocuses-debate-on-health/",
+		    "tags": "stories",
+		    "featured": ""
+		  },
+		  {
+		    "headline": "Wading with the oyster catchers",
+		    "subhead": "",
+		    "publication": "Richmond Confidential",
+		    "date": "2012-11-26",
+		    "image": "thumbs/oysters.jpg",
+		    "link": "http://richmondconfidential.org/2012/11/26/wading-with-the-oyster-catchers/",
+		    "tags": "stories code multimedia",
+		    "featured": ""
+		  },
+		  {
+		    "headline": "Mike Raccoon Eyes Kinney",
+		    "subhead": "",
+		    "publication": "Richmond Confidential",
+		    "date": "2012-10-15",
+		    "image": "thumbs/raccooneyes.jpg",
+		    "link": "http://richmondconfidential.org/2012/10/15/city-council-election-2012-mike-raccoon-eyes-kinney/",
+		    "tags": "stories",
+		    "featured": ""
+		  }
+		];
 
-	/**** SHUFFLE.JS *****/
+	for (var i=0; i < clips.length; i++){
 
-	$(document).ready(function() {
+	$('#clipsbox').append('<div class="clip ' + clips[i].featured + ' ' + clips[i].tags + '"><a target="_blank" href="' + clips[i].link + '"><div class="icons"></div><img src="' + clips[i].image + '" /></a><a target="_blank" href="' + clips[i].link + '"><h4>' + clips[i].headline + '</h4></a><p class="publication">' + clips[i].publication + '</p><span class="subhead">' + clips[i].subhead + '</span></div>');
+	}
+	$('.stories .icons').append('<span><i class="glyphicon glyphicon-pencil"></i></span>');
+	$('.code .icons').append('<span><i class="glyphicon glyphicon-chevron-left"></i><i class="glyphicon glyphicon-chevron-right"></i></span>');
+	$('.multimedia .icons').append('<span><i class="glyphicon glyphicon-camera"></i></span>');
 
-		var $grid = $('#grid'),
-	    	$sizer = $grid.find('.shuffle__sizer');
-
-		$grid.shuffle({
-	    	itemSelector: '.picture-item',
-	    	sizer: $sizer
-		});
-
-		$('.btn').click(function (e) {
-			      var $this = $(this),
-    	isActive = $this.hasClass( 'active' ),
-    	group = isActive ? 'all' : $this.data('group');
-
-		// Hide current label, show current label in title
-	    if ( !isActive ) {
-	    	$('.filter-options .active').removeClass('active');
-	   	}
-
-		$this.toggleClass('active');
-
-	    // Filter elements
-	    	$grid.shuffle( 'shuffle', group );
-		});
-	  		  
-		$('.sort-options').on('change', function() {
-			var sort = this.value,
-		    	opts = {};
-
-			// We're given the element wrapped in jQuery
-			if ( sort === 'date-created' ) {
-		  	opts = {
-		    	reverse: true,
-		    	by: function($el) {
-		      	return $el.data('date-created');
-		    	}
-		  	};
-			} else if ( sort === 'title' ) {
-		  	opts = {
-		    	by: function($el) {
-		      	return $el.data('title').toLowerCase();
-		    	}
-		  	};
-			}
-	  	//filter elements
-	  	$grid.shuffle('sort', opts);
-
-	    });
-
-
+	$('#stories').on('click', function(){
+		$('.code').hide();
+		$('.multimedia').hide();
+		$('.stories').show();
 	});
-
+	$('#code').on('click', function(){
+		$('.stories').hide();
+		$('.multimedia').hide();
+		$('.code').show();
+	});
+	$('#multimedia').on('click', function(){
+		$('.stories').hide();
+		$('.code').hide();
+		$('.multimedia').show();
+	});
+	$('#all').on('click', function(){
+		$('.stories').show();
+		$('.code').show();
+		$('.multimedia').show();
+	});
 </script>
 
 <script>
