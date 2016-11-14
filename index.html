@@ -120,8 +120,7 @@
 		}
 		.thirdslide {
 			position:relative;
-			padding-top: 25px;
-			padding-bottom: 50px;
+			padding: 25px 15px 50px 15px;
 			background-color: white;
 			z-index:200;
 		}
@@ -282,7 +281,14 @@
 				color:black;
 				text-align: center;			
 			}
-
+			#clipsbox .clip {
+				width: calc(50% - 15px);
+				margin: 20px 15px 20px 0;
+			}
+			#clipsbox .featured {
+				width: calc(50% - 15px);
+				margin: 20px 15px 20px 0;
+			}
 		}
 		@media (max-width: 600px){
 			#clipsbox .clip {
@@ -321,7 +327,6 @@
 COVER
 ***********************************************************************************
 -->
-<div class="container">
 <div class="row firstslide slide" id="front">
 
 	<div id="name" class="col-sm-6 col-sm-offset-3 col-xs-12 hidden-xs">
@@ -352,6 +357,7 @@ COVER
 ABOUT SECTION
 ***********************************************************************************
 -->
+
 <div id="about" class="row secondslide">
 
 	<div class="col-sm-10 col-sm-offset-1">
@@ -424,7 +430,7 @@ CLIPS SECTION
 
 
 </div>
-</div>
+
 <script>
 
 	$('.slide').css({'height': $(window).height()});
