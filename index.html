@@ -11,312 +11,7 @@
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
    
-	<style type="text/css">
-		@viewport{
-		    zoom: 1.0;
-		    width: extend-to-zoom;
-		}
-		@-ms-viewport{
-		    width: extend-to-zoom;
-		    zoom: 1.0;
-		}
-
-		/* http://meyerweb.com/eric/tools/css/reset/ 
-	   v2.0 | 20110126
-	   License: none (public domain)
-		*/
-
-		html, body, div, span, applet, object, iframe,
-		h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-		a, abbr, acronym, address, big, cite, code,
-		del, dfn, em, img, ins, kbd, q, s, samp,
-		small, strike, strong, sub, sup, tt, var,
-		b, u, i, center,
-		dl, dt, dd, ol, ul, li,
-		fieldset, form, label, legend,
-		table, caption, tbody, tfoot, thead, tr, th, td,
-		article, aside, canvas, details, embed, 
-		figure, figcaption, footer, header, hgroup, 
-		menu, nav, output, ruby, section, summary,
-		time, mark, audio, video {
-			margin: 0;
-			padding: 0;
-			border: 0;
-			font-size: 100%;
-			font: inherit;
-			vertical-align: baseline;
-		}
-		/* HTML5 display-role reset for older browsers */
-		article, aside, details, figcaption, figure, 
-		footer, header, hgroup, menu, nav, section {
-			display: block;
-		}
-		body {
-			line-height: 1;
-		}
-		ol, ul {
-			list-style: none;
-		}
-		blockquote, q {
-			quotes: none;
-		}
-		blockquote:before, blockquote:after,
-		q:before, q:after {
-			content: '';
-			content: none;
-		}
-		table {
-			border-collapse: collapse;
-			border-spacing: 0;
-		}
-
-
-		/*
-		my css
-		*/
-
-		body {
-			overflow-x: hidden;
-		}
-		h1, h2, h3, h4, h5 {
-			font-family: 'Open Sans', Arial, sans-serif;
-			color: #333;
-		}
-		h3 {
-			font-size: 24px;
-			margin-bottom: 10px;
-			font-weight: 500;
-		}
-
-		h4 {
-			margin: 10px 0 10px 0;
-		}
-		img {
-			max-width: 100%;
-		}
-		p {
-			font-size: 18px;
-			line-height:24px;
-			font-family: 'Georgia', serif;
-			color: #333;
-			margin-bottom: 15px;
-		}
-
-
-		.firstslide{
-			background: url('images/wildwood2.jpg') no-repeat 50% 0 fixed; 
-  				-webkit-background-size: cover;
-  					-moz-background-size: cover;
-  						-o-background-size: cover;
-  			background-size: cover;
-  			z-index:0;
-		}
-		.secondslide {
-			position:relative;
-			background-color:white;
-			z-index:200;
-			padding-top: 50px;
-			padding-bottom: 50px;
-		}
-		.thirdslide {
-			position:relative;
-			padding: 25px 15px 50px 15px;
-			background-color: white;
-			z-index:200;
-		}
-
-		#name {
-			position:fixed;
-			top:30%;
-			z-index:10;
-		}
-
-		#sean {
-			max-height: 300px;
-			position:relative;
-			top:20px;
-			z-index:10;
-		}
-		#name h1 {
-			font-size:5vw;
-			color: white;
-			text-align: center;
-			text-shadow: 1px 1px 1px #C2C2C2;
-
-		}
-
-		#name hr {
-			display: block;
-			width: 30%;
-			margin: 10px auto;
-			background: #FFF;
-			position: relative;
-
-		}
-
-		#name h2 {
-			font-family: Georgia;
-			font-size:2em;
-			color:white;
-			text-align: center;
-		}
-
-		#name-mobile {
-			margin-top: 20px;
-		}
-
-		.glyphicon {
-			color:#34495e;
-		}
-
-		#social_icons {
-			margin-top:15px;
-			height:50px;
-		}
-		#social_icons img {
-			margin: 5px;
-		}
-
-		.filter p {
-			font-family: 'Open Sans', Arial, sans-serif;
-		}
-		.filter p a:hover { cursor: pointer;}
-		#clipsbox {
-    		white-space: wrap;
-		}
-		#clipsbox .clip {
-			width: calc(33% - 15px);
-			display: inline-block;
-			margin: 15px 15px 20px 0;
-			vertical-align: top;
-			position: relative;
-		}
-		#clipsbox .featured {
-			width: calc(66% - 15px);
-		}
-		#clipsbox img {
-			width: 100%;
-		}
-		#clipsbox a img:hover {
-			opacity: 0.8;
-			cursor:pointer;
-		}
-		#clipsbox h4 {
-			font-size: 20px;
-			line-height: 26px;
-		    margin: 5px 0 0 0;
-		    font-weight: 100;
-		}
-		#clipsbox p.publication{
-			font-size: 18px;
-			line-height: 24px;
-			font-family: "Open Sans", Arial, sans-serif;			
-		    margin-bottom: 5px;
-		    font-weight: 600;
-		}
-		#clipsbox span {
-		    font-family: Georgia, serif;
-		    color: #333;
-			font-size: 16px;
-			line-height:21px;
-		}
-		#clipsbox .icons {
-			font-size: 14px;
-			position:absolute;
-			z-index:10;
-			top:3px;
-			right:5px;
-			background: rgba(255,255,255,.8);
-			padding:0 4px;
-			border-radius: 4px;
-		}
-		#clipsbox .icons span {
-			padding: 0 2px;
-		}
-		p.credit {
-			font-family: "Open Sans", Arial, sans-serif;
-			font-size:13px;
-			text-align: center;
-			margin-top: 35px;
-			bottom: 15px;
-		}
-		.xs-break { display: none; }
-		@media (max-width: 768px){
-			.firstslide {
-				max-height: 400px;
-				background: url('images/wildwood2.jpg') no-repeat auto;
-				background-size: contain;
-			}
-			#name {
-				top: 10%;
-			}
-		}
-		@media (max-width: 767px){
-			.firstslide {
-				display: none;
-			}
-			#name-mobile {
-				margin: 0;
-			}
-			.name {
-				margin-top: 20px;
-				margin-bottom: 20px;
-			}
-			#name-mobile h1 {
-			font-family: Georgia;
-			font-size: 25px;
-			color: black;
-			text-align: center;
-			}
-			#name-mobile hr {
-				display: block;
-				width: 20%;
-				margin: 10px auto;
-				background: #FFF;
-				position: relative;
-			}
-			#name-mobile h2 {
-				font-family: Georgia;
-				font-size:18px;
-				color:black;
-				text-align: center;			
-			}
-			#clipsbox .clip {
-				width: calc(50% - 15px);
-				margin: 20px 15px 20px 0;
-			}
-			#clipsbox .featured {
-				width: calc(50% - 15px);
-				margin: 20px 15px 20px 0;
-			}
-		}
-		@media (max-width: 600px){
-			#clipsbox .clip {
-				width: 100%;
-				margin: 20px 0 20px 0;
-			}
-			#clipsbox .featured {
-				width: 100%;
-				margin: 20px 0 20px 0;
-			}
-		}
-		@media (max-width: 400px){
-			.filter p { font-size: 14px;}
-		}
-		@media (max-width: 400px){
-			.firstslide {
-				max-height: 320px;
-			}
-			.filter-options .btn {
-				font-size: 14px;
-			}
-		}
-		@media (max-width: 320px){
-			.xs-break {
-				display: block;
-			}
-		}
-	</style>
+    <link rel="stylesheet" type="text/css" href="css/styles.css" ></link>
 
 </head>
 
@@ -329,7 +24,7 @@ COVER
 -->
 <div class="row firstslide slide" id="front">
 
-	<div id="name" class="col-sm-6 col-sm-offset-3 col-xs-12 hidden-xs">
+	<div id="name" class="col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
 
 		<img src="images/name.png" id="sean" class="img-responsive">
 		<div class="col-sm-6 col-sm-offset-3">
@@ -339,9 +34,9 @@ COVER
 			<h2>journalist</h2>
 		</div>
 	</div>
-
+	<img class="object-fit" src="images/wildwood2.jpg" />
 </div>
-<div id="name-mobile" class="row visible-xs">
+<!-- <div id="name-mobile" class="row visible-xs">
 	<div class="name col-xs-12">
 		<h1>Sean Greene</h1>
 		<hr></hr>
@@ -351,7 +46,7 @@ COVER
 	<div class="mobile-img">
 		<img src="images/wildwood2.jpg" />
 	</div>
-</div>
+</div> -->
 <!--
 ***********************************************************************************
 ABOUT SECTION
@@ -368,9 +63,9 @@ ABOUT SECTION
 
 			<hr></hr>
 
-			<p>Hi, I'm Sean, a journalist specializing in digital storytelling.</p>
-			<p>I'm currently a digital producer at the <a href="http://www.latimes.com/la-bio-sean-greene-staff.html" target="_blank">Los Angeles Times</a>. My work has also appeared in Bay Nature Magazine, KQED, the Ventura County Star and the Orange County Register.</p>
-			<p>In 2014, I graduated from the <a href="http://journalism.berkeley.edu/alumni/sean_greene/" target=blank>UC Berkeley Graduate School of Journalism</a> and I won my fantasy soccer league.</p>
+			<p>Hi, I'm Sean, a journalist specializing in digital storytelling. In my spare time, you can find me hiking or running local trails and supporting Liverpool Football Club <span class="liverpool"></span>.</p>
+			<p>I'm a digital editor and science contributor at the <a href="http://www.latimes.com/la-bio-sean-greene-staff.html" target="_blank">Los Angeles Times</a>. I've previously worked for Bay Nature Magazine, KQED and the Orange County Register.</p>
+			<p>I am also a proud alumnus of the <a href="http://journalism.berkeley.edu/alumni/sean_greene/" target=blank>UC Berkeley Graduate School of Journalism</a> and UCLA.</p>
 
 			<br /><br />
 
@@ -437,6 +132,46 @@ CLIPS SECTION
 	
 	var clips = [
 		  {
+		    "headline": "Archaeology as blood sport: How an ancient mastodon ignited debate over humans’ arrival in North America",
+		    "subhead": "",
+		    "publication": "Los Angeles Times",
+		    "date": "2017-12-22",
+		    "image": "http://www.trbimg.com/img-5a1df08f/turbine/lat-la-me-cerutti-mastodon-photos-la0061589423-20171128/600",
+		    "link": "http://www.latimes.com/local/california/la-me-cerutti-mastodon-20171222-htmlstory.html",
+		    "tags": "code",
+		    "featured": ""
+		  },
+		  {
+		    "headline": "Inside a secret 2014 list of hundreds of L.A. deputies with histories of misconduct",
+		    "subhead": "",
+		    "publication": "Los Angeles Times",
+		    "date": "2017-12-08",
+		    "image": "http://beta.latimes.com/resizer/iMmJ1OQlqab5187s5S_QxSZqcTA=/1400x0/arc-anglerfish-arc2-prod-tronc.s3.amazonaws.com/public/MFZLBCFGKNFN7GUO57ZEDI743Y.jpg",
+		    "link": "http://www.latimes.com/local/la-me-sheriff-brady-list-20171208-htmlstory.html",
+		    "tags": "code",
+		    "featured": ""
+		  },
+		  {
+		    "headline": "Faith, football, family",
+		    "subhead": "How a Texas town is healing after a cop killed a black teenager",
+		    "publication": "Los Angeles Times",
+		    "date": "2017-10-19",
+		    "image": "http://www.trbimg.com/img-59e124cc/turbine/la-na-jordan-edwards-photos-20171011-002/600",
+		    "link": "http://www.latimes.com/projects/la-na-jordan-edwards/",
+		    "tags": "code",
+		    "featured": ""
+		  },
+		  {
+		    "headline": "A trip through horror, confusion and contradictions in Syria",
+		    "subhead": "",
+		    "publication": "Los Angeles Times",
+		    "date": "2017-10-18",
+		    "image": "http://www.trbimg.com/img-59e63422/turbine/la-fg-syria-trip-photos-20171017-004/600",
+		    "link": "http://www.latimes.com/projects/la-fg-syria-trip/",
+		    "tags": "code",
+		    "featured": ""
+		  },
+		  {
 		    "headline": "A new gold rush is on, sparked by California’s post-drought snowmelt",
 		    "subhead": "",
 		    "publication": "Los Angeles Times",
@@ -454,7 +189,7 @@ CLIPS SECTION
 		    "image": "http://www.trbimg.com/img-596fd62d/turbine/la-et-black-women-in-comedy-photos-20170710-065/600",
 		    "link": "http://www.latimes.com/projects/la-et-black-women-comedy/",
 		    "tags": "code",
-		    "featured": "featured"
+		    "featured": ""
 		  },
 		  {
 		    "headline": "Climb inside the massive tunnel 60 feet below downtown L.A.",

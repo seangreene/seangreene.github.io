@@ -1,0 +1,332 @@
+@viewport{
+    zoom: 1.0;
+    width: extend-to-zoom;
+}
+@-ms-viewport{
+    width: extend-to-zoom;
+    zoom: 1.0;
+}
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+v2.0 | 20110126
+License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+/*
+my css
+*/
+
+body {
+	overflow-x: hidden;
+}
+h1, h2, h3, h4, h5 {
+	font-family: 'Open Sans', Arial, sans-serif;
+	color: #333;
+}
+h3 {
+	font-size: 24px;
+	margin-bottom: 5px;
+	font-weight: 500;
+}
+
+h4 {
+	margin: 10px 0 10px 0;
+}
+img {
+	max-width: 100%;
+}
+p {
+	font-size: 18px;
+	line-height:24px;
+	font-family: 'Georgia', serif;
+	color: #333;
+	margin-bottom: 15px;
+}
+
+.firstslide .object-fit {
+	object-fit: cover;
+	height: 100vh;
+	width: 100%;
+	/*object-position: 50% 50%;*/
+}
+/*.firstslide{
+	background: url('/images/wildwood2.jpg') no-repeat 50% 0 fixed; 
+			-webkit-background-size: cover;
+				-moz-background-size: cover;
+					-o-background-size: cover;
+		background-size: cover;
+		z-index:0;
+}*/
+.secondslide {
+	position:relative;
+	background-color:white;
+	z-index:200;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+.thirdslide {
+	position:relative;
+	padding: 25px 15px 50px 15px;
+	background-color: white;
+	z-index:200;
+}
+
+#name {
+	position:absolute;
+	top:30%;
+	z-index:10;
+}
+
+#sean {
+	max-height: 300px;
+	position:relative;
+	top:20px;
+	z-index:10;
+}
+#name h1 {
+	font-size:5vw;
+	color: white;
+	text-align: center;
+	text-shadow: 1px 1px 1px #C2C2C2;
+
+}
+
+#name hr {
+	display: block;
+	width: 30%;
+	margin: 15px auto;
+	background: #FFF;
+	position: relative;
+
+}
+
+#name h2 {
+	font-family: Georgia;
+	font-size:2em;
+	color:white;
+	text-align: center;
+}
+
+#name-mobile {
+	margin-top: 20px;
+}
+.liverpool {
+	background:url('https://upload.wikimedia.org/wikipedia/en/thumb/0/0c/Liverpool_FC.svg/758px-Liverpool_FC.svg.png') no-repeat top left;
+	width: 15px;
+    height: 18px;
+    background-size: contain;
+    display: inline-block;
+    vertical-align: baseline;
+}
+.glyphicon {
+	color:#34495e;
+}
+
+#social_icons {
+	margin-top:15px;
+	height:50px;
+}
+#social_icons img {
+	margin: 5px;
+}
+
+.filter p {
+	font-family: 'Open Sans', Arial, sans-serif;
+}
+.filter p a:hover { cursor: pointer;}
+#clipsbox {
+	white-space: wrap;
+}
+#clipsbox .clip {
+	width: calc(33% - 15px);
+	display: inline-block;
+	margin: 15px 15px 20px 0;
+	vertical-align: top;
+	position: relative;
+}
+#clipsbox .featured {
+	width: calc(66% - 15px);
+}
+#clipsbox img {
+	width: 100%;
+}
+#clipsbox a img:hover {
+	opacity: 0.8;
+	cursor:pointer;
+}
+#clipsbox h4 {
+	font-size: 20px;
+	line-height: 26px;
+    margin: 5px 0 0 0;
+    font-weight: 100;
+}
+#clipsbox p.publication{
+	font-size: 18px;
+	line-height: 24px;
+	font-family: "Open Sans", Arial, sans-serif;			
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+#clipsbox span {
+    font-family: Georgia, serif;
+    color: #333;
+	font-size: 16px;
+	line-height:21px;
+}
+#clipsbox .icons {
+	font-size: 14px;
+	position:absolute;
+	z-index:10;
+	top:3px;
+	right:5px;
+	background: rgba(255,255,255,.8);
+	padding:0 4px;
+	border-radius: 4px;
+}
+#clipsbox .icons span {
+	padding: 0 2px;
+}
+p.credit {
+	font-family: "Open Sans", Arial, sans-serif;
+	font-size:13px;
+	text-align: center;
+	margin-top: 35px;
+	bottom: 15px;
+}
+.xs-break { display: none; }
+/*@media (max-width: 768px){
+	.firstslide {
+		max-height: 400px;
+		background: url('/images/wildwood2.jpg') no-repeat auto;
+		background-size: contain;
+	}
+	#name {
+		top: 10%;
+	}
+}*/
+@media (max-width: 767px){
+
+	#name h2 {
+		font-family: Georgia;
+		font-size:1.8em;
+		color:white;
+		text-align: center;
+	}
+/*	.firstslide {
+		display: none;
+	}*/
+/*	#name-mobile {
+		margin: 0;
+	}
+	.name {
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+	#name-mobile h1 {
+	font-family: Georgia;
+	font-size: 25px;
+	color: black;
+	text-align: center;
+	}
+	#name-mobile hr {
+		display: block;
+		width: 20%;
+		margin: 10px auto;
+		background: #FFF;
+		position: relative;
+	}
+	#name-mobile h2 {
+		font-family: Georgia;
+		font-size:18px;
+		color:black;
+		text-align: center;			
+	}*/
+	#clipsbox .clip {
+		width: calc(50% - 15px);
+		margin: 20px 15px 20px 0;
+	}
+	#clipsbox .featured {
+		width: calc(50% - 15px);
+		margin: 20px 15px 20px 0;
+	}
+}
+@media (max-width: 600px){
+	hr {
+	    margin-top: 10px;
+	    margin-bottom: 10px;
+	    border: 0;
+	    border-top: 1px solid #eee;
+	}
+	#social_icons img {
+		width: 25px;
+	}
+	#clipsbox .clip {
+		width: 100%;
+		margin: 20px 0 20px 0;
+	}
+	#clipsbox .featured {
+		width: 100%;
+		margin: 20px 0 20px 0;
+	}
+}
+@media (max-width: 400px){
+	.filter p { font-size: 14px;}
+}
+@media (max-width: 400px){
+	/*.firstslide {
+		max-height: 320px;
+	}*/
+	.filter-options .btn {
+		font-size: 14px;
+	}
+}
+@media (max-width: 320px){
+	.xs-break {
+		display: block;
+	}
+}
