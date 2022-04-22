@@ -6,7 +6,6 @@
 
     <title>Sean Greene</title>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="js/modernizr.custom.js"></script>
     <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
@@ -17,11 +16,6 @@
 
 <body>
 
-<!--
-***********************************************************************************
-COVER
-***********************************************************************************
--->
 <section class="row firstslide slide" id="front">
 
 	<div id="name" class="col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
@@ -36,22 +30,6 @@ COVER
 	</div>
 	<img class="object-fit" src="images/wildwood2.jpg" />
 </section>
-<!-- <div id="name-mobile" class="row visible-xs">
-	<div class="name col-xs-12">
-		<h1>Sean Greene</h1>
-		<hr></hr>
-		<h2>journalist</h2>
-	</div>
-
-	<div class="mobile-img">
-		<img src="images/wildwood2.jpg" />
-	</div>
-</div> -->
-<!--
-***********************************************************************************
-ABOUT SECTION
-***********************************************************************************
--->
 
 <section id="about" class="row secondslide">
 
@@ -63,9 +41,9 @@ ABOUT SECTION
 
 			<hr></hr>
 
-			<p>Hi, I'm Sean, a journalist specializing in digital storytelling. In my spare time, you can find me hiking or running local trails and supporting Liverpool Football Club <span class="liverpool"></span>.</p>
+			<p>Hi, I'm Sean, a journalist specializing in digital storytelling. In my spare time, you can find me hiking or running local trails and supporting Liverpool Football Club.</p>
 			<p>I'm currently an assistant data and graphics editor at the <a href="https://www.latimes.com/people/sean-greene">Los Angeles Times</a>. I've previously worked for Bay Nature Magazine, KQED and the Orange County Register.</p>
-			<p>I am also a proud alumnus of the <a href="http://journalism.berkeley.edu/alumni/sean_greene/" target=blank>UC Berkeley Graduate School of Journalism</a> and UCLA.</p>
+			<p>I am an alumnus of the <a href="http://journalism.berkeley.edu/alumni/sean_greene/">UC Berkeley Graduate School of Journalism</a> and UCLA.</p>
 
 			<br /><br />
 
@@ -84,12 +62,6 @@ ABOUT SECTION
 	</div>
 </section>
 
-<!--
-***********************************************************************************
-CLIPS SECTION
-***********************************************************************************
--->
-
 <section id="work" class="row thirdslide">
 	
 	<div class="col-sm-10 col-sm-offset-1">
@@ -97,396 +69,90 @@ CLIPS SECTION
 		<h3>Work</h3>
 		
 		<hr></hr>
-	    <!--Filter/Sort controls -->
-	    <div class="filter">
-	    	<p>Filter: <br class="xs-break"><a id="stories">Stories</a> | <a id="code">Code</a> | <a id="multimedia">Multimedia</a> | <a id="all">Show all</a></p>
-	    </div>
+
 		<div id="clipsbox"></div>
 
 	</div>
 
-	<div class="col-sm-2 col-sm-offset-5">
-		<p class="credit">Site design by Sean Greene</p>
-	</div>
-
-
 </section>
 
 <script>
-
-	$('.slide').css({'height': $(window).height()});
 	
-	var clips = [
-		  {
-		    "headline": "Archaeology as blood sport: How an ancient mastodon ignited debate over humans’ arrival in North America",
-		    "subhead": "",
-		    "publication": "Los Angeles Times",
-		    "date": "2017-12-22",
-		    "image": "http://www.trbimg.com/img-5a1df08f/turbine/lat-la-me-cerutti-mastodon-photos-la0061589423-20171128/600",
-		    "link": "http://www.latimes.com/local/california/la-me-cerutti-mastodon-20171222-htmlstory.html",
-		    "tags": "code",
-		    "featured": ""
-		  },
-		  {
-		    "headline": "Inside a secret 2014 list of hundreds of L.A. deputies with histories of misconduct",
-		    "subhead": "",
-		    "publication": "Los Angeles Times",
-		    "date": "2017-12-08",
-		    "image": "http://beta.latimes.com/resizer/iMmJ1OQlqab5187s5S_QxSZqcTA=/1400x0/arc-anglerfish-arc2-prod-tronc.s3.amazonaws.com/public/MFZLBCFGKNFN7GUO57ZEDI743Y.jpg",
-		    "link": "http://www.latimes.com/local/la-me-sheriff-brady-list-20171208-htmlstory.html",
-		    "tags": "code",
-		    "featured": ""
-		  },
-		  {
-		    "headline": "Faith, football, family",
-		    "subhead": "How a Texas town is healing after a cop killed a black teenager",
-		    "publication": "Los Angeles Times",
-		    "date": "2017-10-19",
-		    "image": "http://www.trbimg.com/img-59e124cc/turbine/la-na-jordan-edwards-photos-20171011-002/600",
-		    "link": "http://www.latimes.com/projects/la-na-jordan-edwards/",
-		    "tags": "code",
-		    "featured": ""
-		  },
-		  {
-		    "headline": "A trip through horror, confusion and contradictions in Syria",
-		    "subhead": "",
-		    "publication": "Los Angeles Times",
-		    "date": "2017-10-18",
-		    "image": "http://www.trbimg.com/img-59e63422/turbine/la-fg-syria-trip-photos-20171017-004/600",
-		    "link": "http://www.latimes.com/projects/la-fg-syria-trip/",
-		    "tags": "code",
-		    "featured": ""
-		  },
-		  {
-		    "headline": "A new gold rush is on, sparked by California’s post-drought snowmelt",
-		    "subhead": "",
-		    "publication": "Los Angeles Times",
-		    "date": "2017-07-28",
-		    "image": "http://www.trbimg.com/img-5976b074/turbine/la-gold-fever-photos-20170724-001/600/16x9",
-		    "link": "http://www.latimes.com/projects/la-me-gold-fever/",
-		    "tags": "code",
-		    "featured": ""
-		  },
-		  {
-		    "headline": "Black while funny and female: 18 comedic actresses on working in Hollywood",
-		    "subhead": "",
-		    "publication": "Los Angeles Times",
-		    "date": "2017-10-10",
-		    "image": "http://www.trbimg.com/img-596fd62d/turbine/la-et-black-women-in-comedy-photos-20170710-065/600",
-		    "link": "http://www.latimes.com/projects/la-et-black-women-comedy/",
-		    "tags": "code",
-		    "featured": ""
-		  },
-		  {
-		    "headline": "Climb inside the massive tunnel 60 feet below downtown L.A.",
-		    "subhead": "",
-		    "publication": "Los Angeles Times",
-		    "date": "2017-05-14",
-		    "image": "http://www.trbimg.com/img-5907ec41/turbine/la-me-subway-tunnel-pictures-20170501-008/600",
-		    "link": "http://www.latimes.com/projects/la-me-metro-tunneling/",
-		    "tags": "code",
-		    "featured": "featured"
-		  },		  
-		  {
-		    "headline": "Plastic trash could top 13 billion tons by 2050. And recycling doesn't help much",
-		    "subhead": "",
-		    "publication": "Los Angeles Times",
-		    "date": "2017-07-21",
-		    "image": "http://www.trbimg.com/img-596f98d6/turbine/la-1500485843-aowldrvkbg-snap-image/600",
-		    "link": "http://www.latimes.com/science/sciencenow/la-sci-sn-plastic-trash-20170721-htmlstory.html",
-		    "tags": "stories",
-		    "featured": ""
-		  },
-		  {
-		    "headline": "Antarctica shed a block of ice the size of Delaware, but scientists think the real disaster could be decades away",
-		    "subhead": "",
-		    "publication": "Los Angeles Times",
-		    "date": "2017-07-13",
-		    "image": "http://www.trbimg.com/img-5966e005/turbine/la-1499914242-8z43cmbo32-snap-image/600",
-		    "link": "http://www.latimes.com/science/sciencenow/la-sci-sn-larson-ice-sheet-20170713-htmlstory.html",
-		    "tags": "stories",
-		    "featured": ""
-		  },		  
-		  {
-		    "headline": "Another way humans are polluting the environment: Too much noise",
-		    "subhead": "",
-		    "publication": "Los Angeles Times",
-		    "date": "2017-05-04",
-		    "image": "http://www.trbimg.com/img-591bdc0b/turbine/la-sci-sn-noise-pollution-humans-20170504/600/16x9",
-		    "link": "http://www.latimes.com/science/sciencenow/la-sci-sn-noise-pollution-humans-20170504-htmlstory.html",
-		    "tags": "stories",
-		    "featured": ""
-		  },
-		  {
-		    "headline": "How ‘Goldilocks fires’ can give rise to vibrant bird communities years after a forest blaze",
-		    "subhead": "",
-		    "publication": "Los Angeles Times",
-		    "date": "2016-10-10",
-		    "image": "http://www.trbimg.com/img-57f59195/turbine/la-1475711561-snap-photo/600/16x9",
-		    "link": "http://www.latimes.com/science/sciencenow/la-sci-sn-wildfire-bird-diversity-20161007-snap-story.html",
-		    "tags": "stories",
-		    "featured": ""
-		  },
-		  // {
-		  //   "headline": "Better late than never: Scientists discover amazing tool-wielding ability of nearly extinct Hawaiian crows",
-		  //   "subhead": "",
-		  //   "publication": "Los Angeles Times",
-		  //   "date": "2016-09-16",
-		  //   "image": "http://www.trbimg.com/img-57d8f18a/turbine/la-1473835534-snap-photo/600/16x9",
-		  //   "link": "http://www.latimes.com/science/sciencenow/la-sci-sn-hawaiian-crow-tools-20160913-snap-story.html",
-		  //   "tags": "stories",
-		  //   "featured": ""
-		  // },		  
-		  {
-		    "headline": "L.A.’s mountain lions could be near extinction in 50 years",
-		    "subhead": "",
-		    "publication": "Los Angeles Times",
-		    "date": "2016-08-31",
-		    "image": "http://www.trbimg.com/img-57c5df8b/turbine/la-1472585709-snap-photo/600/16x9",
-		    "link": "http://www.latimes.com/science/sciencenow/la-sci-sn-mountain-lions-threat-20160830-snap-story.html",
-		    "tags": "stories",
-		    "featured": ""
-		  },
-		  {
-		    "headline": "Hunter calls. Bird responds. And together they find honey.",
-		    "subhead": "",
-		    "publication": "Los Angeles Times",
-		    "date": "2016-06-21",
-		    "image": "http://www.trbimg.com/img-578d6a97/turbine/la-sci-sn-honey-hunter-sounds-20160718-001/600/16x9",
-		    "link": "http://www.latimes.com/science/sciencenow/la-sci-sn-human-honeyguide-cooperation-20160721-snap-story.html",
-		    "tags": "stories",
-		    "featured": ""
-		  },
-		  {
-		    "headline": "Pokemon Go' players are finding real animals while searching for digital ones",
-		    "subhead": "",
-		    "publication": "Los Angeles Times",
-		    "date": "2016-06-11",
-		    "image": "http://www.trbimg.com/img-57db1c3f/turbine/la-sci-sn-pokemon-go-real-animals-20160711-20160711-snap/600/16x9",
-		    "link": "http://www.latimes.com/science/sciencenow/la-sci-sn-pokemon-go-real-animals-20160711-20160711-snap-story.html",
-		    "tags": "stories",
-		    "featured": ""
-		  },
-		  {
-		    "headline": "Holy bat sounds! Unusual library will help scientists track bat species",
-		    "subhead": "",
-		    "publication": "Los Angeles Times",
-		    "date": "2016-05-19",
-		    "image": "http://www.trbimg.com/img-573d3e93/turbine/la-sci-sn-bat-sounds-library-20160520-snap/600/16x9",
-		    "link": "http://www.latimes.com/projects/bat-sounds-library/",
-		    "tags": "stories code",
-		    "featured": ""
-		  },
-		  {
-		    "headline": "We've never seen this before': Watch NOAA's live feed of a hidden, watery world",
-		    "subhead": "",
-		    "publication": "Los Angeles Times",
-		    "date": "2016-05-05",
-		    "image": "http://www.trbimg.com/img-5727cb38/turbine/la-sci-sn-noaas-okeanos-explorer-marianas-tren-022/600/16x9",
-		    "link": "http://static.latimes.com/okeanos-explorer/",
-		    "tags": "stories code",
-		    "featured": "featured"
-		  },
-		  {
-		    "headline": "Quiz: How many national parks have you visited?",
-		    "subhead": "",
-		    "publication": "Los Angeles Times",
-		    "date": "2016-04-18",
-		    "image": "http://www.trbimg.com/img-571a72e0/turbine/la-tr-national-parks-quiz-20160418/600/16x9",
-		    "link": "http://www.latimes.com/travel/la-tr-national-parks-quiz-20160418-htmlstory.html",
-		    "tags": "code",
-		    "featured": ""
-		  },
-		  {
-		    "headline": "Yosemite's granite cliffs are 'breathing,' and heat can make them fall",
-		    "subhead": "My first A1 story for the L.A. Times",
-		    "publication": "Los Angeles Times",
-		    "date": "2016-03-28",
-		    "image": "http://www.trbimg.com/img-56f96c99/turbine/la-sci-sn-yosemite-rockfalls-heat-20160328-002/600/16x9",
-		    "link": "http://www.latimes.com/science/sciencenow/la-sci-sn-yosemite-rockfalls-heat-20160328-story.html",
-		    "tags": "stories",
-		    "featured": "featured"
-		  },
-		  {
-		    "headline": "Weird, Ugly, Rare",
-		    "subhead": "I designed and developed the website for a Bay Nature biodiversity series.",
-		    "publication": "Bay Nature",
-		    "date": "2016-03-10",
-		    "image": "thumbs/damselfish.jpg",
-		    "link": "http://baynature.org/biodiversity/",
-		    "tags": "code",
-		    "featured": "featured"
-		  },
-		  {
-		    "headline": "Celebrating our national parks",
-		    "subhead": "I helped produce and design L.A. Times Travel's yearlong national park series.",
-		    "publication": "Los Angeles Times",
-		    "date": "2016-01-01",
-		    "image": "http://www.trbimg.com/img-574dbef9/turbine/la-tr-year-of-national-parks-20160131/600/16x9",
-		    "link": "http://www.latimes.com/nationalparks",
-		    "tags": "code",
-		    "featured": ""
-		  },
-		  // {
-		  //   "headline": "L.A.'s best craft beer",
-		  //   "subhead": "I helped conceptualize and build a guide to L.A.'s craft beer scene.",
-		  //   "publication": "Los Angeles Times",
-		  //   "date": "2015-07-01",
-		  //   "image": "http://www.trbimg.com/img-55920134/turbine/la-fo-beerguide-studio-photos-20150611-012/600/16x9",
-		  //   "link": "http://graphics.latimes.com/beerguide/",
-		  //   "tags": "code",
-		  //   "featured": ""
-		  // },
-		  {
-		    "headline": "California's national parks: A photographic history seen through The Times' archives",
-		    "subhead": "",
-		    "publication": "Los Angeles Times",
-		    "date": "2015-06-11",
-		    "image": "http://www.trbimg.com/img-553149a5/turbine/la-tr-california-national-parks-20150417-001/600/16x9",
-		    "link": "http://www.latimes.com/travel/california/la-tr-california-national-parks-20150417-htmlstory.html",
-		    "tags": "stories code",
-		    "featured": ""
-		  },
-		  {
-		    "headline": "Unlocking Cuba",
-		    "subhead": "A package of travel stories about Cuba, including two special multimedia pages -- <a href=\"http://graphics.latimes.com/cuba-cars/\" target=\"_blank\">a fun grid of classic car door handles</a> and <a href=\"http://graphics.latimes.com/cuba-photos/\" target=\"_blank\">a fullscreen photo story</a>.",
-		    "publication": "Los Angeles Times",
-		    "date": "2015-05-09",
-		    "image": "http://www.trbimg.com/img-554b9d25/turbine/la-tr-cuba-van-der-brug-20150505-002/600/16x9",
-		    "link": "http://graphics.latimes.com/travel-to-cuba/",
-		    "tags": "code",
-		    "featured": ""
-		  },
-		  {
-		    "headline": "The pre-Premier League history of Liverpool FC in 10 facts",
-		    "subhead": "I proudly contributed a story to my favorite soccer team's fan website.",
-		    "publication": "LFC XTRA",
-		    "date": "2014-11-03",
-		    "image": "thumbs/lfcxtra.jpg",
-		    "link": "http://xtra.liverpoolfc.com/news/football-didn-t-begin-in-1992-the-pre-premier-league-history-of-liverpool-fc-in-10-facts",
-		    "tags": "stories",
-		    "featured": ""
-		  },
-		  {
-		    "headline": "The Jumbo Squid Have Left California. Or Have They?",
-		    "subhead": "“All of a sudden the cooler was full of red blood. Squid blood isn’t red, so I knew it was me.”",
-		    "publication": "Bay Nature",
-		    "date": "2014-05-22",
-		    "image": "thumbs/squid.jpg",
-		    "link": "https://medium.com/@BayNature/the-jumbo-squid-have-left-california-or-have-they-915edd5f083f",
-		    "tags": "stories stories multimedia",
-		    "featured": ""
-		  },
-		  {
-		    "headline": "Climate California",
-		    "subhead": "My graduate school master's project, a four-part multimedia narrative.",
-		    "publication": "UC Berkeley",
-		    "date": "2014-05-12",
-		    "image": "thumbs/climatecalifornia.png",
-		    "link": "http://climatecalifornia.com",
-		    "tags": "stories code multimedia",
-		    "featured": "featured"
-		  },
-		  {
-		    "headline": "Living Shorelines",
-		    "subhead": "Recruiting oysters for habitat restoration and climate adaptation",
-		    "publication": "Bay Nature",
-		    "date": "2014-04-07",
-		    "image": "thumbs/shoreline2.jpg",
-		    "link": "http://baynature.org/articles/living-shorelines/",
-		    "tags": "stories",
-		    "featured": ""
-		  },
-		  {
-		    "headline": "Buying a Spot in English Soccer's Top Flight",
-		    "subhead": "A data visualization on the English Premier League, made using D3.js for a class.",
-		    "publication": "",
-		    "date": "2013-12-12",
-		    "image": "thumbs/soccerviz.jpg",
-		    "link": "http://seangreene.github.io/EPL-Project/",
-		    "tags": "code",
-		    "featured": ""
-		  },
-		  {
-		    "headline": "Is There Earthquake Weather?",
-		    "subhead": "",
-		    "publication": "Bay Nature",
-		    "date": "2013-10-16",
-		    "image": "thumbs/earthquakeweather.jpg",
-		    "link": "http://baynature.org/article/earthquake-weather/",
-		    "tags": "stories",
-		    "featured": ""
-		  },
-		  {
-		    "headline": "On top of the world",
-		    "subhead": "",
-		    "publication": "Richmond Confidential",
-		    "date": "2013-04-24",
-		    "image": "thumbs/kami.jpg",
-		    "link": "http://richmondconfidential.org/2013/04/24/on-top-of-the-world/",
-		    "tags": "stories multimedia",
-		    "featured": ""
-		  },
-		  // {
-		  //   "headline": "As California considers soda tax, Richmond refocuses debate on health",
-		  //   "subhead": "",
-		  //   "publication": "Richmond Confidential",
-		  //   "date": "2013-03-06",
-		  //   "image": "thumbs/sodatax.jpg",
-		  //   "link": "http://richmondconfidential.org/2013/03/06/as-california-considers-soda-tax-richmond-refocuses-debate-on-health/",
-		  //   "tags": "stories",
-		  //   "featured": ""
-		  // },
-		  {
-		    "headline": "Wading with the oyster catchers",
-		    "subhead": "",
-		    "publication": "Richmond Confidential",
-		    "date": "2012-11-26",
-		    "image": "thumbs/oysters.jpg",
-		    "link": "http://richmondconfidential.org/2012/11/26/wading-with-the-oyster-catchers/",
-		    "tags": "stories code multimedia",
-		    "featured": ""
-		  },
-		  // {
-		  //   "headline": "Mike Raccoon Eyes Kinney",
-		  //   "subhead": "",
-		  //   "publication": "Richmond Confidential",
-		  //   "date": "2012-10-15",
-		  //   "image": "thumbs/raccooneyes.jpg",
-		  //   "link": "http://richmondconfidential.org/2012/10/15/city-council-election-2012-mike-raccoon-eyes-kinney/",
-		  //   "tags": "stories",
-		  //   "featured": ""
-		  // }
-		];
+	var data = [
+		{
+			"headline": "Pismo Beach was once the Clam Capital of the World. Then the clams disappeared",
+			"date": "2021-11-30",
+			"image": "clam.jpg",
+			"url": "https://www.latimes.com/projects/pismo-clams/"
+		},
+		{
+			"headline": "Heat waves are far deadlier than we think. How California neglects this climate threat",
+			"date": "2021-10-07",
+			"image": "extreme-heat.jpg",
+			"url": "https://www.latimes.com/projects/california-extreme-heat-deaths-show-climate-change-risks/"
+		},
+		{
+			"headline": "Can reviving beach dunes help California with sea level rise?",
+			"date": "2021-08-02",
+			"image": "dunes.jpg",
+			"url": "https://www.latimes.com/projects/can-reviving-beach-dunes-help-california-with-sea-level-rise/"
+		},
+		{
+			"headline": "Here’s how experts know the COVID-19 vaccines are safe",
+			"date": "2021-04-06",
+			"image": "vaccines.jpg",
+			"url": "https://www.latimes.com/projects/covid-19-vaccine-safety-side-effects-risks-reactions/"
+		},
+		{
+			"headline": "How the coronavirus flooded California and swamped L.A.",
+			"date": "2021-01-31",
+			"image": "covid-yr-one.jpg",
+			"url": "https://www.latimes.com/projects/connecting-california-covid-cases-la-surge/"
+		},
+		{
+			"headline": "How the waters off Catalina became a DDT dumping ground",
+			"date": "2020-10-25",
+			"image": "ddt.jpg",
+			"url": "https://www.latimes.com/projects/la-coast-ddt-dumping-ground/"
+		},
+		{
+			"headline": "Why smart runners will be thinking about elevation at the L.A. Marathon",
+			"date": "2020-03-06",
+			"image": "marathon.jpg",
+			"url": "https://www.latimes.com/projects/los-angeles-marathon-2020-elevation-analysis/"
+		},
+		{
+			"headline": "There are more women than ever in ‘Star Wars.’ Men still do most of the talking",
+			"date": "2019-12-19",
+			"image": "star-wars.png",
+			"url": "https://www.latimes.com/projects/star-wars-movies-female-character-analysis/"
+		}
+		]
 
-	for (var i=0; i < clips.length; i++){
+	const clipsbox = document.getElementById('clipsbox');
+		
+	data.forEach((item) =>{
 
-	$('#clipsbox').append('<div class="clip ' + clips[i].featured + ' ' + clips[i].tags + '"><a target="_blank" href="' + clips[i].link + '"><div class="icons"></div><img src="' + clips[i].image + '" /></a><a target="_blank" href="' + clips[i].link + '"><h4>' + clips[i].headline + '</h4></a><p class="publication">' + clips[i].publication + '</p><span class="subhead">' + clips[i].subhead + '</span></div>');
-	}
-	$('.stories .icons').append('<span><i class="glyphicon glyphicon-pencil"></i></span>');
-	$('.code .icons').append('<span><i class="glyphicon glyphicon-chevron-left"></i><i class="glyphicon glyphicon-chevron-right"></i></span>');
-	$('.multimedia .icons').append('<span><i class="glyphicon glyphicon-camera"></i></span>');
+		let clip = clipsbox.appendChild(document.createElement('div'));
+   		clip.classList.add('clip');		
+				
+		const a1 = clip.appendChild(document.createElement('a'));
+		a1.href = `${item.url}`;
 
-	$('#stories').on('click', function(){
-		$('.code').hide();
-		$('.multimedia').hide();
-		$('.stories').show();
+		const a2 = clip.appendChild(document.createElement('a'));
+		a2.href = `${item.url}`;
+
+		const figure = a1.appendChild(document.createElement('figure'));
+		const image = figure.appendChild(document.createElement('img'));
+		image.src = `thumbs/${item.image}`;
+
+
+		const headline = a2.appendChild(document.createElement('h2'));
+		headline.innerHTML = `${item.headline}`;
+
+
 	});
-	$('#code').on('click', function(){
-		$('.stories').hide();
-		$('.multimedia').hide();
-		$('.code').show();
-	});
-	$('#multimedia').on('click', function(){
-		$('.stories').hide();
-		$('.code').hide();
-		$('.multimedia').show();
-	});
-	$('#all').on('click', function(){
-		$('.stories').show();
-		$('.code').show();
-		$('.multimedia').show();
-	});
+	
 </script>
 
 <script>
